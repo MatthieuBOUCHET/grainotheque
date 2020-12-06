@@ -1,5 +1,5 @@
 <?php
-//Sorry TWFyaW5lIEJhdGFpbGxl
+//Sorry TWFyaW5lIEJhdGFpbGxl, really
 session_start();
 require_once('./models/general.php');
 
