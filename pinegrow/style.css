@@ -1,0 +1,20 @@
+.link:hover {
+    background-color: #e3e3e3;
+    text-decoration: none;
+}
+
+.link {
+    background-color: white;
+    transition: all ease-in-out 0.5s;
+}
+
+#menu
+{
+    position:sticky;
+    top:0px;
+}
+
+tr:hover
+{
+    background-color:#e0dfe4;
+}
