@@ -9,7 +9,7 @@ ob_start();
         <!--PAS DE RESULTATS-->
         <?php
         if(!$resultats){
-            echo("<div class='alert alert-danger mt-5 shadow-none text-center' >Aucun résultat trouvé !</div>");
+            echo("<div class='alert alert-danger mt-5 shadow-none text-center'>Aucun résultat trouvé !</div>");
         }
 
         //Resultats

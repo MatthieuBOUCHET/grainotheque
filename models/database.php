@@ -3,7 +3,7 @@ require_once 'general.php';
 require_once 'formulaire.php';
 
 /**
- * Class BDD basée sur POO
+ * Classe BDD basée sur PDO
  */
 class BDD extends PDO
 {
@@ -15,7 +15,7 @@ class BDD extends PDO
         try 
         {
             PDO::__construct('mysql:host=localhost;dbname=grainotheque','root','');
-            $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+            $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING); //Prod
         }
 
         catch(PDOException $e)
@@ -93,14 +93,8 @@ class BDD extends PDO
 
             $sql = $sql.$sql_3;
 
-            //VERIF STOCK
-            if(isset($sql_4))
-            {
-                $sql = $sql.$sql_4;
-            }
-
-            $sql_5 = ' ORDER BY espece';
-            $sql = $sql.$sql_5;
+            $sql_4 = ' ORDER BY espece';
+            $sql = $sql.$sql_4;
 
             //echo $sql;
             $this->sql = $sql;
