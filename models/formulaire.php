@@ -60,7 +60,11 @@ class Formsdatas
 
             //Autres
             else if($value == "0"){
-                unset($this->donnees[$key]);
+                if($key != 'categorie')
+                {
+                    unset($this->donnees[$key]);
+                }
+                
             }
 
             else if($value == ""){

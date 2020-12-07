@@ -34,44 +34,39 @@ class BDD extends PDO
     private function construction_sql($params)
     {
         //TABLE
-        if(isset($params['form']))
-        {
-            $table = $params['form'];
-            unset($params['form']);
-        }
-        else
+        if(!isset($params['categorie']))
         {
             header('Location:/');
             exit();
         }
-        
 
         //SELECT
-        $sql_1 = 'SELECT * from grainotheque INNER JOIN ';
+        $sql_1 = 'SELECT * from graines INNER JOIN ';
         
         //JOINTURE
-        switch($table)
+        switch($params['categorie'])
         {
             case 0:
                 $sql_2 = 'fleurs_sauvages_locales ON grainotheque.id_graine = fleurs_sauvages_locales.id
                 INNER JOIN fleurs_horticoles ON grainotheque.id_graine = fleurs_horticoles.id
                 INNER JOIN aromatiques ON grainotheque.id_graine = aromatiques.id
                 INNER JOIN legumes ON grainotheque.id_graine = legumes.id';
+                break;
                 
             case 1:
-                $sql_2 = 'fleurs_sauvages_locales ON grainotheque.id_graine = fleurs_sauvages_locales.id';
+                $sql_2 = 'fleurs_sauvages_locales ON graines.id_graine = fleurs_sauvages_locales.id';
                 break;
 
             case 2:
-                $sql_2 = 'fleurs_horticoles ON grainotheque.id_graine = fleurs_horticoles.id';
+                $sql_2 = 'fleurs_horticoles ON graines.id_graine = fleurs_horticoles.id';
                 break;
             
             case 3:
-                $sql_2 = 'legumes ON grainotheque.id_graine = legumes.id';
+                $sql_2 = 'legumes ON graines.id_graine = legumes.id';
                 break;
 
             case 4:
-                $sql_2 = 'aromatiques ON grainotheque.id_graine = aromatiques.id';
+                $sql_2 = 'aromatiques ON graines.id_graine = aromatiques.id';
                 break;
 
             default:
@@ -123,6 +118,7 @@ class BDD extends PDO
             $sql_4 = ' ORDER BY espece';
             $sql = $sql.$sql_4;
 
+            //print_r($sql);
             $this->sql = $sql;
             $this->params = $params;
             return 0;
