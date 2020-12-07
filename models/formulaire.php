@@ -119,7 +119,7 @@ function decode_donnees($ensemble)
                 $champ = 'Juin';
                 break;
             case 7:
-                $champ = 'Jullet';
+                $champ = 'Juillet';
                 break;
             case 8:
                 $champ = 'Août';

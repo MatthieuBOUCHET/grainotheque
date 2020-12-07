@@ -1,5 +1,5 @@
 <?php
-//Sorry TWFyaW5lIEJhdGFpbGxl, really
+//Désolé TWFyaW5lIEJhdGFpbGxl, vraiment :)
 session_start();
 require_once('./models/general.php');
 
@@ -11,9 +11,13 @@ if(!empty($_GET['action']))
     {
         require_once './views/home.php';
     }
-
+    
     if($action == 'resultats')
     {
+        if(count($_POST) == 0)
+        {
+            header('Location:index.php');
+        }
         require './models/formulaire.php';
         if(count($resultats) == 0)
         {
@@ -28,11 +32,12 @@ if(!empty($_GET['action']))
             <th>ID</th>
             <th>Espèce</th>
             <th>Nom latin</th>
+            <th>Stock (unités)</th>
             <th>Famille</th>
             <th>Cycle</th>
             <th>Couleur</th>
             <th>Floraison</th>
-            <th>Hauteur</th>
+            <th>Hauteur (cm)</th>
             <th>Semis</th>
             <th>Culture godets</th>
             <th>Technique</th>
@@ -48,6 +53,7 @@ if(!empty($_GET['action']))
                 <th scope='row'>".$ligne['id']."</th>
                 <td>".$ligne['espece']."</td>
                 <td>".$ligne['latin']."</td>
+                <td>".$ligne['stock']."</td>
                 <td>".$ligne['famille']."</td>      
                 <td>".$ligne['cycle']."</td>
                 <td>".$ligne['couleur']."</td>
@@ -59,10 +65,9 @@ if(!empty($_GET['action']))
                 <td>".$ligne['exposition']."</td>
                 <td>".$ligne['pollinisateur']."</td>
                 </tr>";
-                ;
-            }
-            
+            }       
         }
+
         require_once './views/resultats.php';
     }
 }

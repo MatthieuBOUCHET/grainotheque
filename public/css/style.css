@@ -8,19 +8,16 @@
     transition: all ease-in-out 0.5s;
 }
 
-#menu
-{
-    position:sticky;
-    top:0px;
+#menu {
+    position: sticky;
+    top: 0px;
 }
 
-tr
-{
-    transition: all ease-in-out 0.5s;
+tr:hover {
+    background-color: #e0dfe4;
 }
 
-tr:hover
-{
-    background-color:#e0dfe4;
-    cursor: default;;
+.numeral {
+    width: 10%;
+    max-width: 100%;
 }

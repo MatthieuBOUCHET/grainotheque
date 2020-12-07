@@ -50,15 +50,33 @@ class BDD extends PDO
         $sql_1 = 'SELECT * from grainotheque INNER JOIN ';
         
         //JOINTURE
-        if($table == 1)
+        switch($table)
         {
-            $sql_2 = 'fleurs_sauvages_locales ON grainotheque.id_graine = fleurs_sauvages_locales.id';
-        }
+            case 0:
+                $sql_2 = 'fleurs_sauvages_locales ON grainotheque.id_graine = fleurs_sauvages_locales.id
+                INNER JOIN fleurs_horticoles ON grainotheque.id_graine = fleurs_horticoles.id
+                INNER JOIN aromatiques ON grainotheque.id_graine = aromatiques.id
+                INNER JOIN legumes ON grainotheque.id_graine = legumes.id';
+                
+            case 1:
+                $sql_2 = 'fleurs_sauvages_locales ON grainotheque.id_graine = fleurs_sauvages_locales.id';
+                break;
 
-        else
-        {
-            header('Location:/');
-            exit();
+            case 2:
+                $sql_2 = 'fleurs_horticoles ON grainotheque.id_graine = fleurs_horticoles.id';
+                break;
+            
+            case 3:
+                $sql_2 = 'legumes ON grainotheque.id_graine = legumes.id';
+                break;
+
+            case 4:
+                $sql_2 = 'aromatiques ON grainotheque.id_graine = aromatiques.id';
+                break;
+
+            default:
+                header('Location:/');
+                exit();
         }
 
         $sql = $sql_1.$sql_2; //Construction de la requête, étape 1
@@ -81,7 +99,16 @@ class BDD extends PDO
             foreach($params as $key => $value)
             {
                 $sql_3 = $sql_3.$key;
-                $sql_3 = $sql_3.' = :';
+                
+                if($key == 'stock' || $key == 'hauteur')
+                {
+                    $sql_3 = $sql_3.' >= :';
+                }
+                else
+                {
+                    $sql_3 = $sql_3.' = :';
+                }
+                
                 $sql_3 = $sql_3.$key;
 
                 if (!($i == $fin))
@@ -96,7 +123,6 @@ class BDD extends PDO
             $sql_4 = ' ORDER BY espece';
             $sql = $sql.$sql_4;
 
-            //echo $sql;
             $this->sql = $sql;
             $this->params = $params;
             return 0;
