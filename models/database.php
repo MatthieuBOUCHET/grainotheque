@@ -1,6 +1,6 @@
 <?php
 require_once 'general.php';
-require_once 'formulaire.php';
+require_once 'traitement_donnees.php';
 
 /**
  * Classe BDD basée sur PDO
@@ -46,12 +46,6 @@ class BDD extends PDO
         //JOINTURE
         switch($params['categorie'])
         {
-            case 0:
-                $sql_2 = 'fleurs_sauvages_locales ON grainotheque.id_graine = fleurs_sauvages_locales.id
-                INNER JOIN fleurs_horticoles ON grainotheque.id_graine = fleurs_horticoles.id
-                INNER JOIN aromatiques ON grainotheque.id_graine = aromatiques.id
-                INNER JOIN legumes ON grainotheque.id_graine = legumes.id';
-                break;
                 
             case 1:
                 $sql_2 = 'fleurs_sauvages_locales ON graines.id_graine = fleurs_sauvages_locales.id';
@@ -79,7 +73,7 @@ class BDD extends PDO
         //CLAUSES CONDITIONNELLES
         if(count($params) == 0)
         {
-            //echo $sql;
+            print_r($sql);
             $this->sql = $sql;
             return 0;
         }
@@ -115,10 +109,8 @@ class BDD extends PDO
 
             $sql = $sql.$sql_3;
 
-            $sql_4 = ' ORDER BY espece';
-            $sql = $sql.$sql_4;
 
-            //print_r($sql);
+            // print_r($sql);
             $this->sql = $sql;
             $this->params = $params;
             return 0;
@@ -131,18 +123,53 @@ class BDD extends PDO
      * Fonction exécutant et renvoyant les résultations de la requête
      *
      * @param [DICT] $params, construit par la méthode `getdonnees()`de `FormsDatas`
+     * @param [DICT] $resultats, liste de résultats, vide par défaut
      * @return void
      */
-    public function requete_selection($params)
+    private function requete_selection($params,$resultats=[])
     {
         $this->construction_sql($params);
 
         $req = $this->prepare($this->sql);
-        $donnees = $req->execute($this->params);
-        $resultat = $req->fetchAll();
+        $req->execute($this->params);
 
+        while($ligne = $req->fetch())
+            {
+                array_push($resultats,$ligne);
+            }
+        
+        
+        //print_r($this->sql);
         $req->closeCursor();
-        return $resultat;
+        return $resultats;
+    }
+
+    public function recherche($params)
+    {
+
+        if($params['categorie'] == 0)
+        {
+            for($i=1;$i<=4;$i++)
+            {
+                $params['categorie'] = $i;
+                $ensemble[$i] = $this->requete_selection($params);
+            }
+        }
+
+        else 
+        {
+            $ensemble[$params['categorie']] = $this->requete_selection($params);
+        }
+        
+        
+        foreach($ensemble as $key=>$value)
+        {
+            if (count($ensemble[$key]) == 0)
+            {
+                unset($ensemble[$key]);
+            }
+        }
+        return $ensemble;
     }
 }
 
