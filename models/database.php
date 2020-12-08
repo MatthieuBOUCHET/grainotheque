@@ -16,6 +16,7 @@ class BDD extends PDO
         {
             PDO::__construct('mysql:host=localhost;dbname=grainotheque','root','');
             $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING); //Prod
+            $this->exec('SET CHARACTER SET utf8');
         }
 
         catch(PDOException $e)
