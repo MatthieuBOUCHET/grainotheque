@@ -173,3 +173,16 @@ class BDD extends PDO
     }
 }
 
+function familles_requetes()
+{
+    //Recup JSON
+    $file = fopen('./public/familles.json','r');
+    $json = fread($file,filesize('./public/familles.json'));
+
+    $json_decode = json_decode($json);
+
+    //Traitement
+    $familles = $json_decode->familles;
+
+    return $familles;
+}

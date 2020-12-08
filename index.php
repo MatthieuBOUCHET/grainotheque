@@ -8,6 +8,8 @@ if(!empty($_GET['action']))
 
     if($action == 'home')
     {
+        require './models/database.php';
+        $familles = familles_requetes(); //Pour le formulaire, champ famille
         require_once './views/home.php';
     }
     
@@ -27,9 +29,18 @@ if(!empty($_GET['action']))
 
         require_once './views/resultats.php';
     }
+
+    else
+    {
+        require './models/database.php';
+        $familles = familles_requetes(); //Pour le formulaire, champ famille
+        require_once './views/home.php';
+    }
 }
 
 else
 {
+    require './models/database.php';
+    $familles = familles_requetes(); //Pour le formulaire, champ famille
     require_once './views/home.php';
 }

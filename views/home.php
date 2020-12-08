@@ -1,6 +1,5 @@
 <?php
 
-
 $html_1 = "<div class='border border-dark container mb-4 mt-4 pb-1 pl-auto pt-1'>
 <h2>Recherche</h2>
 <form role='form'class='mt-2' action='index.php?action=resultats' method='POST'>
@@ -19,19 +18,18 @@ $html_1 = "<div class='border border-dark container mb-4 mt-4 pb-1 pl-auto pt-1'
     <div class='form-group'>
         <label for='espece'>Espèce</label>
         <input type='text' class='form-control espece' name='espece' placeholder='Achillée Millefeuille' data-pg-name='espece'>
-    </div>
-
-    <div class='form-group'>
-        <label for='latin'>Nom latin</label>
-        <input type='text' class='form-control latin' name='latin' placeholder='ex : Achillea millefolium' data-pg-name='latin'>
-    </div>  
+    </div> 
 
     <div class='form-group'>
         <label for='famille'>Famille</label>
         <select name='famille' class='form-control famille' data-pg-name='famille'> 
-            <option value='0'>Pas de filtres de famille</option>
-            <option value='Astéracées'>Astéracées</option>                         
-        </select>
+            <option value='0'>Pas de filtres de famille</option>";
+            foreach($familles as $ligne)
+            {
+                $html_1 = $html_1."<option value='".$ligne."'>".$ligne."</option>";
+            }
+
+        $html_2 = "</select>
     </div>
 
     <div class='form-group'>
@@ -60,9 +58,9 @@ $html_1 = "<div class='border border-dark container mb-4 mt-4 pb-1 pl-auto pt-1'
     </div>
 
     <div class='d-flex flex-row form-row justify-content-center text-left'>";
-        
-        $id=['debut_floraison'=>'Début de floraison',
-        'fin_floraison'=>'Fin de floraison','debut_semis'=>'Début semis','fin_semis'=>'Fin semis'];
+        $html_1 = $html_1.$html_2;
+        $id=['debut_floraison'=>'Début de floraison/récolte',
+        'fin_floraison'=>'Fin de floraison/récolte','debut_semis'=>'Début semis','fin_semis'=>'Fin semis'];
         
         foreach($id as $key => $value)
         {
@@ -120,6 +118,7 @@ $html_1 = "<div class='border border-dark container mb-4 mt-4 pb-1 pl-auto pt-1'
     <button type='submit' class='align-content-center btn btn-primary d-block justify-content-center ml-auto mr-auto mt-4'>Rechercher</button>                 
 </form>
 </div>";
+
 $html_1 = $html_1.$html_3;
 
 
