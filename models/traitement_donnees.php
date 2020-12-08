@@ -98,11 +98,20 @@ function decode_donnees($ensemble)
                 $ensemble['couleur'] = 'Rose';
                 break;
             case 4:
-                $ensemble['couleur'] = 'Magenta';
+                $ensemble['couleur'] = 'Rouge';
                 break;
             case 5:
                 $ensemble['couleur'] = 'Bleu';
                 break;
+            case 6:
+                $ensemble['couleur'] = 'Orange';
+                break;
+            case 7:
+                $ensemble['couleur'] = 'Violet';
+                break;
+            case 8:
+                $ensemble['couleur']='Vert';
+            
         }
 
         $ensemble['debut_floraison'] = mois_cond($ensemble['debut_floraison']);

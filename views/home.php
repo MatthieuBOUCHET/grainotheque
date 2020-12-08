@@ -51,8 +51,11 @@ $html_1 = "<div class='border border-dark container mb-4 mt-4 pb-1 pl-auto pt-1'
             <option value='1'>Blanc</option>
             <option value='2'>Jaune</option>
             <option value='3'>Rose</option>
-            <option value='4'>Magenta</option>
+            <option value='4'>Rouge</option>
             <option value='5'>Bleu</option>
+            <option value='6'>Orange</option>
+            <option value='7'>Violet</option>
+            <option value='8'>Vert</option>
         </select>
     </div>
 

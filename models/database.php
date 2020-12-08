@@ -147,7 +147,7 @@ class BDD extends PDO
     public function recherche($params)
     {
 
-        if($params['categorie'] == 0)
+        if($params['categorie'] == 0) //Affichage de l'ensemble de la table
         {
             for($i=1;$i<=4;$i++)
             {
