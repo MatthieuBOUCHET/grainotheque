@@ -6,7 +6,7 @@ $html_1 = "<div class='border border-dark container mb-4 mt-4 pb-1 pl-auto pt-1'
 
     <div class='form-group'>
         <label for='categorie'>Catégorie</label>
-        <select name='categorie' class='form-control categorie' data-pg-name='categorie'> 
+        <select name='categorie' class='form-control categorie' id='categorie' onchange='changements_categories();'> 
             <option value='0'>Toutes catégories</option>
             <option value='1'>Fleurs sauvages locales</option>
             <option value='2'>Fleurs horticoles</option>
@@ -107,7 +107,7 @@ $html_1 = "<div class='border border-dark container mb-4 mt-4 pb-1 pl-auto pt-1'
     </div>
 
     <div class='btn-group' data-toggle='buttons'> 
-        <label class='btn btn-light'> 
+        <label class='btn btn-light' id='checkbox_culture'> 
             <input type='checkbox' name='culture'> Culture godets/caissette               
         </label>                     
         <label class='btn btn-light'> 
@@ -117,7 +117,8 @@ $html_1 = "<div class='border border-dark container mb-4 mt-4 pb-1 pl-auto pt-1'
 
     <button type='submit' class='align-content-center btn btn-primary d-block justify-content-center ml-auto mr-auto mt-4'>Rechercher</button>                 
 </form>
-</div>";
+</div>
+";
 
 $html_1 = $html_1.$html_3;
 
