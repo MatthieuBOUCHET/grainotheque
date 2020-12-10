@@ -106,6 +106,16 @@ $html_1 = "<div class='border border-dark container mb-4 mt-4 pb-1 pl-auto pt-1'
         <input type='number' class='form-control user-select-all numeral hauteur' name='hauteur' min='0' max='10000'> 
     </div>
 
+    <div class='form-group' id='ecartement_entre_lignes'> 
+        <label for='ecartement_entre_lignes'>Ecartement entre lignes minimum (cm)</label>                     
+        <input type='number' class='form-control user-select-all numeral hauteur' name='hauteur' min='0' max='10000'> 
+    </div>
+
+    <div class='form-group' id='ecartement_sur_lignes'> 
+        <label for='ecartement_sur_lignes'>Ecartement sur lignes minimum (cm)</label>                     
+        <input type='number' class='form-control user-select-all numeral' name='ecartement_entre_lignes' min='0' max='10000'> 
+    </div>
+
     <div class='btn-group' data-toggle='buttons'> 
         <label class='btn btn-light' id='checkbox_culture'> 
             <input type='checkbox' name='culture'> Culture godets/caissette               

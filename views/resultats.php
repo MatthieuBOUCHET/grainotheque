@@ -2,7 +2,8 @@
 ob_start();
 require_once './models/traitement_donnees.php';
 
-$t_1 = "<table class='mt-5 mw-100 table w-100'>
+$t_1 = "
+<table class='mt-1 mw-100 table w-100'>
             <thead>
             <tr>
             <th>Espèce</th>
@@ -23,7 +24,8 @@ $t_1 = "<table class='mt-5 mw-100 table w-100'>
             </thead>
             <tbody>";
 
-$t_legumes = "<table class='mt-5 mw-100 table w-100'>
+$t_legumes = "
+<table class='mt-1 mw-100 table w-100'>
 <thead>
 <tr>
 <th>Espèce</th>
@@ -47,7 +49,7 @@ $t_legumes = "<table class='mt-5 mw-100 table w-100'>
 </thead>
 <tbody>";
 
-$t_other = "<table class='mt-5 mw-100 table w-100'> <!--Changements sur récolte et ajout des champs entre lignes-->
+$t_other = "<table class='mt-1 mw-100 table w-100'> <!--Changements sur récolte et ajout des champs entre lignes-->
 <thead>
 <tr>
 <th>Espèce</th>
@@ -68,7 +70,6 @@ $t_other = "<table class='mt-5 mw-100 table w-100'> <!--Changements sur récolte
 </thead>
 <tbody>";
 
-
 ?>
 
 <h2 class="d-block pb-2 pl-auto pt-2 text-center">Résultats de la recherche</h2>
@@ -77,12 +78,15 @@ $t_other = "<table class='mt-5 mw-100 table w-100'> <!--Changements sur récolte
 
         <!--PAS DE RESULTATS-->
         <?php
-
         if(gettype($resultats) != 'boolean')
         {
+            $titres=[1=>'Fleurs sauvages locales',2=>'Fleurs horticoles',3=>'Légumes',4=>'Aromatiques'];
+            
             foreach($resultats as $key=>$val)
             {
-                if($key==1){
+                switch($key)
+                {
+                    case 1:
                         echo($t_1);
 
                         foreach($resultats[$key] as $ligne)
@@ -107,12 +111,13 @@ $t_other = "<table class='mt-5 mw-100 table w-100'> <!--Changements sur récolte
 
                             echo($t_1_val);
                         }
-                    }
-                    else if($key==3){ //Légumes
-                        echo($t_legumes);
+                        break;
 
+                    case 3:
+                        echo($t_legumes);
                         foreach($resultats[$key] as $ligne)
                         {
+                            
                             $ligne=decode_donnees($ligne);
                             $t_val_legumes = "<tr>
                                 <th>".$ligne['espece']."</th>
@@ -136,8 +141,10 @@ $t_other = "<table class='mt-5 mw-100 table w-100'> <!--Changements sur récolte
 
                             echo($t_val_legumes);
                         }
-                    }
-                    else{
+                        break;
+                    
+
+                    default:
                         echo($t_other);
                         foreach($resultats[$key] as $ligne)
                             {
@@ -163,6 +170,7 @@ $t_other = "<table class='mt-5 mw-100 table w-100'> <!--Changements sur récolte
                                 echo($t_other_val);
                             }
                     }
+                    echo("<h3 class='mt-5'>".$titres[$key].'</h3>');
                 }
                 
             }

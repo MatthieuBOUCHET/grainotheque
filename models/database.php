@@ -90,7 +90,7 @@ class BDD extends PDO
             {
                 $sql_3 = $sql_3.$key;
                 
-                if($key == 'stock' || $key == 'hauteur')
+                if($key == 'stock' || $key == 'hauteur' || $key=='ecartement_entre_lignes' || $key=='ecartement_sur_lignes')
                 {
                     $sql_3 = $sql_3.' >= :';
                 }
