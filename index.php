@@ -13,9 +13,10 @@ if(!empty($_GET['action']))
         require_once './views/home.php';
     }
     
-    if($action == 'resultats')
+    else if($action == 'resultats')
     {
         require_once './models/formulaire.php';
+        $resultats = recherche();
         if(count($_POST) == 0)
         {
             header('Location:index.php');
@@ -28,6 +29,13 @@ if(!empty($_GET['action']))
         }
 
         require_once './views/resultats.php';
+    }
+
+    else if($action == 'insertion_formulaire')
+    {
+        require './models/database.php';
+        $familles = familles_requetes(); //Pour le formulaire, champ famille
+        require_once './views/insertion.php';
     }
 
     else

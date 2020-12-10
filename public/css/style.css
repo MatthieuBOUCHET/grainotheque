@@ -13,7 +13,7 @@
     top: 0px;
 }
 
-tr:hover {
+tbody > tr:hover {
     background-color: #e0dfe4;
 }
 

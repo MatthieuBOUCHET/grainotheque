@@ -84,8 +84,13 @@ class Formsdatas
 
 }
 
-$datas = new Formsdatas;
-$db = new BDD;
-$utilisateur = $datas->getdonnees();
+function recherche()
+{
+    $datas = new Formsdatas;
+    $db = new BDD;
+    $utilisateur = $datas->getdonnees();
 
-$resultats = $db->recherche($utilisateur);
+    $resultats = $db->recherche($utilisateur);
+
+    return $resultats;
+}
