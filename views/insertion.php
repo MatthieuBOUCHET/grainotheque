@@ -1,7 +1,7 @@
 <?php
 
-$html_1 = "<div class='border border-dark container mb-4 mt-4 pb-1 pl-auto pt-1'>
-<h2>Insertion</h2>
+$html_1 = "<div class='container mb-4 mt-4 pb-1 pl-auto pt-1'>
+<h2>Ajout</h2>
 <form role='form'class='mt-2' action='index.php?action=insertion' method='POST'>
 
     <div class='form-group'>
@@ -20,13 +20,15 @@ $html_1 = "<div class='border border-dark container mb-4 mt-4 pb-1 pl-auto pt-1'
     </div>
 
     <div class='form-group'>
-        <label for='latin'>Espèce</label>
-        <input type='text' class='form-control espece' name='latin' placeholder='Agremonia eupatoria' data-pg-name='espece'>
+        <label for='latin'>Latin</label>
+        <input type='text' class='form-control espece' name='latin' placeholder='Agremonia eupatoria'>
     </div> 
 
     <div class='form-group'>
         <label for='famille'>Famille</label>
-        <select name='famille' class='form-control famille' data-pg-name='famille'>";
+        <select name='famille' class='form-control famille' data-pg-name='famille'>
+            <option value=''>Famille inconnue</option>
+        ";
             foreach($familles as $ligne)
             {
                 $html_1 = $html_1."<option value='".$ligne."'>".$ligne."</option>";
@@ -38,7 +40,7 @@ $html_1 = "<div class='border border-dark container mb-4 mt-4 pb-1 pl-auto pt-1'
     <div class='form-group'>
         <label for='cycle'>Cycle</label>
         <select name='cycle' class='form-control cycle' data-pg-name='cycle'> 
-            <option value='0'>Pas de filtre de cycle</option>
+            <option value=''>Cycle inconnu</option>
             <option value='1'>Annuel</option>
             <option value='2'>Bisannuel</option>
             <option value='3'>Vivace</option>                         
@@ -48,7 +50,7 @@ $html_1 = "<div class='border border-dark container mb-4 mt-4 pb-1 pl-auto pt-1'
     <div class='form-group'>
         <label for='couleur'>Couleur</label>
         <select name='couleur'class='form-control couleur' data-pg-name='famille'> 
-            <option value='0'>Pas de filtre de couleur</option>
+            <option value=''>Pas de couleurs</option>
             <option value='1'>Blanc</option>
             <option value='2'>Jaune</option>
             <option value='3'>Rose</option>
@@ -70,7 +72,7 @@ $html_1 = "<div class='border border-dark container mb-4 mt-4 pb-1 pl-auto pt-1'
             $html_2 = "<div class='form-group ml-4 mr-4'>
                 <label for=".$key.">".$value."</label>
                 <select name=".$key." id=".$key." class='form-control'> 
-                    <option value='0'>Pas de filtre</option>
+                    <option value=''>Inconnu</option>
                     <option value='1'>Janvier</option>
                     <option value='2'>Février</option>
                     <option value='3'>Mars</option>
@@ -92,7 +94,7 @@ $html_1 = "<div class='border border-dark container mb-4 mt-4 pb-1 pl-auto pt-1'
     <div class='form-group'>
         <label for='exposition'>Exposition</label>
         <select class='form-control exposition' data-pg-name='exposition' name='exposition'> 
-            <option value='0'>Pas de filtre d'exposition</option>
+            <option value=''>Inconnu</option>
             <option value='1'>Soleil</option>
             <option value='2'>Mi-ombre</option>
             <option value='3'>Ombre</option>                         
@@ -138,7 +140,7 @@ $html_1 = "<div class='border border-dark container mb-4 mt-4 pb-1 pl-auto pt-1'
         </label>                                         
     </div>
 
-    <button type='submit' class='align-content-center btn btn-primary d-block justify-content-center ml-auto mr-auto mt-4'>Rechercher</button>                 
+    <button type='submit' class='align-content-center btn btn-primary d-block justify-content-center ml-auto mr-auto mt-4'>Ajouter</button>                 
 </form>
 </div>
 ";

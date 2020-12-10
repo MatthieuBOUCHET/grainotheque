@@ -83,14 +83,3 @@ class Formsdatas
     }
 
 }
-
-function recherche()
-{
-    $datas = new Formsdatas;
-    $db = new BDD;
-    $utilisateur = $datas->getdonnees();
-
-    $resultats = $db->recherche($utilisateur);
-
-    return $resultats;
-}

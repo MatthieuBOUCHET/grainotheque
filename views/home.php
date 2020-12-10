@@ -1,6 +1,6 @@
 <?php
 
-$html_1 = "<div class='border border-dark container mb-4 mt-4 pb-1 pl-auto pt-1'>
+$html_1 = "<div class='container mb-4 mt-4 pb-1 pl-auto pt-1'>
 <h2>Recherche</h2>
 <form role='form'class='mt-2' action='index.php?action=resultats' method='POST'>
 

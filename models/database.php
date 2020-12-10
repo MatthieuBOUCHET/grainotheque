@@ -26,6 +26,7 @@ class BDD extends PDO
         }
     }
 
+    //SELECT
     /**
      * Fonction construisant la requête SQL à partir des données du formulaire
      *
@@ -34,47 +35,47 @@ class BDD extends PDO
      */
     private function construction_sql($params)
     {
-        //TABLE
+        //VERIFICATION
         if(!isset($params['categorie']))
         {
-            header('Location:/');
-            exit();
+            redirection($GLOBALS['HOME']);
         }
+        
 
         //SELECT
-        $sql_1 = 'SELECT * from graines INNER JOIN ';
+        $sql_1 = 'SELECT * from ';
         
-        //JOINTURE
+        //SELECTION TABLE
         switch($params['categorie'])
         {
-                
             case 1:
-                $sql_2 = 'fleurs_sauvages_locales ON graines.id_graine = fleurs_sauvages_locales.id';
+                $sql_2 = 'fleurs_sauvages_locales';
                 break;
 
             case 2:
-                $sql_2 = 'fleurs_horticoles ON graines.id_graine = fleurs_horticoles.id';
+                $sql_2 = 'fleurs_horticoles';
                 break;
             
             case 3:
-                $sql_2 = 'legumes ON graines.id_graine = legumes.id';
+                $sql_2 = 'legumes';
                 break;
 
             case 4:
-                $sql_2 = 'aromatiques ON graines.id_graine = aromatiques.id';
+                $sql_2 = 'aromatiques';
                 break;
 
             default:
-                header('Location:/');
+                redirection($GLOBALS['HOME']);
                 exit();
         }
+        unset($params['categorie']);
 
         $sql = $sql_1.$sql_2; //Construction de la requête, étape 1
 
         //CLAUSES CONDITIONNELLES
         if(count($params) == 0)
         {
-            print_r($sql);
+            //print_r($sql);
             $this->sql = $sql;
             return 0;
         }
@@ -83,7 +84,7 @@ class BDD extends PDO
         {
             $sql_3 = ' WHERE ';
 
-            $i = 1;
+            $i = 1; //COMPTEUR FIN
             $fin = count($params);
 
             foreach($params as $key => $value)
@@ -172,6 +173,136 @@ class BDD extends PDO
         }
         return $ensemble;
     }
+
+    //INSERTION
+    private function construction_sql_insert($params)
+    {
+        //VERIFICATION
+        if(!isset($params['categorie']))
+        {
+            echo('<div class="alert alert-danger mt-5 shadow-none text-center" role="alert">
+            Insertion impossible, redirection vers le formulaire dans 10 secondes ...
+            </div>');
+            sleep(10);
+            redirection($GLOBALS['HOME']);
+        }
+        
+        switch($params['categorie'])
+        {
+            case 1:
+                $sql_2 = 'fleurs_sauvages_locales';
+                break;
+
+            case 2:
+                $sql_2 = 'fleurs_horticoles';
+                break;
+            
+            case 3:
+                $sql_2 = 'legumes';
+                break;
+
+            case 4:
+                $sql_2 = 'aromatiques';
+                break;
+
+            default:
+                redirection($GLOBALS['HOME']);
+                exit();
+        }
+        unset($params['categorie']);
+
+        if (count($params) == 0){
+            echo('<div class="alert alert-danger mt-5 shadow-none text-center" role="alert">
+            Insertion impossible, redirection vers le formulaire dans 10 secondes ...
+            </div>');
+            sleep(10);
+            redirection($GLOBALS['HOME']);
+        }
+
+        //INSERT
+        $sql = 'INSERT INTO '.$sql_2.' (';
+
+        $i = 1; //COMPTEUR FIN
+        $fin = count($params);
+
+        foreach($params as $key => $value)
+        {
+            $sql = $sql.$key;
+
+            if(!$i == $fin)
+            {
+                $sql = $sql.',';
+            }
+            $i++;
+            
+        }//Nom des champs
+
+        $sql = $sql.') VALUES (';
+
+        $i = 1;
+        foreach($params as $key => $value)
+        {
+            $sql = $sql.':';
+            $sql = $sql.$key;
+
+            if(!$i == $fin)
+            {
+                $sql = $sql.',';
+            }
+
+            $i++;
+            
+        }//Valeur des champs
+
+        $sql = $sql.');';
+
+        $this->sql = $sql;
+        $this->params = $params;
+    }
+
+    public function ajout($params)
+    {
+        $this->construction_sql_insert($params);
+
+
+        $req = $this->prepare($this->sql);
+
+        try {
+            $req->execute($this->params);
+            redirection('/index.php');
+        }
+
+        catch(Exception $e)
+        {
+            echo('<div class="alert alert-danger mt-5 shadow-none text-center" role="alert">
+            Insertion impossible, redirection vers le formulaire dans 10 secondes ...
+            </div>');
+            sleep(10);
+            redirection('/index.php?action=insertion_formulaire)');
+        }
+    }
+
+}
+
+function recherche()
+{
+    $datas = new Formsdatas;
+    $db = new BDD;
+    $utilisateur = $datas->getdonnees();
+
+    $resultats = $db->recherche($utilisateur);
+    $db = null;
+
+    return $resultats;
+}
+
+function ajout()
+{
+    $datas = new Formsdatas();
+    $db = new BDD;
+    $entrees = $datas->getdonnees();
+    $db->ajout($entrees);
+
 }
 
 function familles_requetes()

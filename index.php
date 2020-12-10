@@ -1,6 +1,12 @@
 <?php
 //Désolé TWFyaW5lIEJhdGFpbGxl, vraiment :)
 session_start();
+require_once('./models/general.php');
+require_once('./models/database.php');
+require_once('./models/formulaire.php');
+require_once('./models/traitement_donnees.php');
+
+
 
 if(!empty($_GET['action']))
 {
@@ -8,14 +14,12 @@ if(!empty($_GET['action']))
 
     if($action == 'home')
     {
-        require './models/database.php';
         $familles = familles_requetes(); //Pour le formulaire, champ famille
         require_once './views/home.php';
     }
     
     else if($action == 'resultats')
     {
-        require_once './models/formulaire.php';
         $resultats = recherche();
         if(count($_POST) == 0)
         {
@@ -33,14 +37,17 @@ if(!empty($_GET['action']))
 
     else if($action == 'insertion_formulaire')
     {
-        require './models/database.php';
         $familles = familles_requetes(); //Pour le formulaire, champ famille
         require_once './views/insertion.php';
     }
 
+    else if($action == 'insertion')
+    {
+        ajout();
+    }
+
     else
     {
-        require './models/database.php';
         $familles = familles_requetes(); //Pour le formulaire, champ famille
         require_once './views/home.php';
     }
@@ -48,7 +55,6 @@ if(!empty($_GET['action']))
 
 else
 {
-    require './models/database.php';
     $familles = familles_requetes(); //Pour le formulaire, champ famille
     require_once './views/home.php';
 }
