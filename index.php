@@ -14,8 +14,13 @@ if(!empty($_GET['action']))
 
     if($action == 'home')
     {
-        $familles = familles_requetes(); //Pour le formulaire, champ famille
         require_once './views/home.php';
+    }
+
+    else if($action == 'recherche')
+    {
+        $familles = familles_requetes(); //Pour le formulaire, champ famille
+        require_once './views/recherche.php';
     }
     
     else if($action == 'resultats')

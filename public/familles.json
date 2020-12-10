@@ -1,3 +1,22 @@
 {
-        "familles":["Apiacées","Astéridées","Astéracées","Rosacées"]
+        "familles":[
+                "Apiacées",
+                "Astéridées",
+                "Astéracées",
+                "Boragnicées",
+                "Brassinacées",
+                "Campanulacées",
+                "Campanulacées",
+                "Caryophyllacées",
+                "Convulvulacées",
+                "Dipsacacées",
+                "Fabacées",
+                "Hypericacées",
+                "Lamiacées",
+                "Malvacées",
+                "Papaveracées",
+                "Plantaginacées",
+                "Résédacées",
+                "Rosacées",
+                "Scrophulariaceae"]
 }

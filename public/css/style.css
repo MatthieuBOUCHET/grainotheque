@@ -21,3 +21,8 @@ tbody > tr:hover {
     width: 10%;
     max-width: 100%;
 }
+
+.home
+{
+    width: 45%;
+}
