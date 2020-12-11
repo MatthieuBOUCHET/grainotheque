@@ -92,7 +92,8 @@ $html_1 = "<div class='container mb-4 mt-4 pb-1 pl-auto pt-1'>
             <option value='0'>Pas de filtre d'exposition</option>
             <option value='1'>Soleil</option>
             <option value='2'>Mi-ombre</option>
-            <option value='3'>Ombre</option>                         
+            <option value='3'>Ombre</option> 
+            <option value='4'>Soleil + Mi-Ombre</option>                         
         </select>
     </div>
 

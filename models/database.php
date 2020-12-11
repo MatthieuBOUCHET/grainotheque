@@ -180,11 +180,7 @@ class BDD extends PDO
         //VERIFICATION
         if(!isset($params['categorie']))
         {
-            echo('<div class="alert alert-danger mt-5 shadow-none text-center" role="alert">
-            Insertion impossible, redirection vers le formulaire dans 10 secondes ...
-            </div>');
-            sleep(10);
-            redirection($GLOBALS['HOME']);
+            redirection('/index.php');
         }
         
         switch($params['categorie'])
@@ -206,17 +202,11 @@ class BDD extends PDO
                 break;
 
             default:
-                redirection($GLOBALS['HOME']);
-                exit();
         }
         unset($params['categorie']);
 
         if (count($params) == 0){
-            echo('<div class="alert alert-danger mt-5 shadow-none text-center" role="alert">
-            Insertion impossible, redirection vers le formulaire dans 10 secondes ...
-            </div>');
-            sleep(10);
-            redirection($GLOBALS['HOME']);
+            redirection('/index.php');
         }
 
         //INSERT
@@ -229,7 +219,7 @@ class BDD extends PDO
         {
             $sql = $sql.$key;
 
-            if(!$i == $fin)
+            if($i != $fin)
             {
                 $sql = $sql.',';
             }
@@ -245,7 +235,7 @@ class BDD extends PDO
             $sql = $sql.':';
             $sql = $sql.$key;
 
-            if(!$i == $fin)
+            if($i != $fin)
             {
                 $sql = $sql.',';
             }
@@ -263,7 +253,7 @@ class BDD extends PDO
     public function ajout($params)
     {
         $this->construction_sql_insert($params);
-
+        print_r($this->sql);
 
         $req = $this->prepare($this->sql);
 
@@ -282,6 +272,76 @@ class BDD extends PDO
         }
     }
 
+    //STATS
+    private function switch_table($table)
+    {
+        switch($table)
+        {
+            case 1:
+                $sql_2 = 'fleurs_sauvages_locales';
+                break;
+
+            case 2:
+                $sql_2 = 'fleurs_horticoles';
+                break;
+            
+            case 3:
+                $sql_2 = 'legumes';
+                break;
+
+            case 4:
+                $sql_2 = 'aromatiques';
+                break;
+            }
+            return $sql_2;
+    }
+
+    private function construction_sql_stats_repartition($table)
+    {
+        $sql = 'SELECT COUNT(*) FROM ';
+        //SELECTION TABLE
+        $sql = $sql.$this->switch_table($table);
+        //print_r($sql);
+        $this->sql = $sql;
+    }
+    
+
+    public function stats_repartition()
+    {
+        $resultats=[];
+        for($i=1;$i<=4;$i++)
+        {
+            $this->construction_sql_stats_repartition($i);
+            $req = $this->prepare($this->sql);
+            $req->execute();
+            array_push($resultats,$req->fetch()[0]);
+        }
+        return $resultats;
+    }
+
+    private function construction_sql_stats_stock($table)
+    {
+        $sql = 'SELECT COUNT(*) FROM ';
+        //SELECTION TABLE
+        $sql = $sql.$this->switch_table($table);
+        $sql = $sql.' WHERE stock = 0';
+        //print_r($sql);
+        $this->sql = $sql;
+    }
+
+    public function stats_stock()
+    {
+        $resultats=[];
+        for($i=1;$i<=4;$i++)
+        {
+            $this->construction_sql_stats_stock($i);
+            $req = $this->prepare($this->sql);
+            $req->execute();
+            array_push($resultats,$req->fetch()[0]);
+        }
+        
+        return $resultats;
+    }
 }
 
 function recherche()
@@ -302,7 +362,25 @@ function ajout()
     $db = new BDD;
     $entrees = $datas->getdonnees();
     $db->ajout($entrees);
+    $db = null;
 
+}
+
+function stats_repartition()
+{
+    $db = new BDD;
+    $repartition = $db->stats_repartition();
+    $cookie=implode(',',$repartition);
+    setcookie('repartition',$cookie); 
+    $db = null; 
+}
+
+function stats_stock()
+{
+    $db = new BDD;
+    $stock = $db->stats_stock();
+    $cookie=implode(',',$stock);
+    setcookie('stock',$cookie);  
 }
 
 function familles_requetes()

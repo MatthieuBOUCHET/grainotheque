@@ -131,7 +131,7 @@ function decode_donnees($ensemble)
                 $ensemble['exposition'] = 'Ombre';
                 break;
             case 4:
-                $ensemble['exposition'] = 'Mi-Ombre + Soleil';
+                $ensemble['exposition'] = 'Soleil + Mi-Ombre';
                 break;
         }
 

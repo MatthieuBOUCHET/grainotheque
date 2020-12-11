@@ -12,11 +12,19 @@
         <title>Grainothèque</title>
         <!-- BOOTSRAP -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <!--FONT AWESOME (icônes)-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+        <!--CHARTS JS (graphes) -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+        <script src="../public/scripts/charts.js"></script>
+        <!-- JQUERY Bibliothèque JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="../public/scripts/js.cookie.js"></script>
         <!-- STYLES PERSOS -->
         <link href="./public/css/style.css" rel="stylesheet">
         <script>/* Pinegrow Interactions, NE PAS ENLEVER */ (function(){try{if(!document.documentElement.hasAttribute('data-pg-ia-disabled')) { window.pgia_small_mq=typeof pgia_small_mq=='string'?pgia_small_mq:'(max-width:767px)';window.pgia_large_mq=typeof pgia_large_mq=='string'?pgia_large_mq:'(min-width:768px)';var style = document.createElement('style');var pgcss='html:not(.pg-ia-no-preview) [data-pg-ia-hide=""] {opacity:0;visibility:hidden;}html:not(.pg-ia-no-preview) [data-pg-ia-show=""] {opacity:1;visibility:visible;display:block;}';if(document.documentElement.hasAttribute('data-pg-id') && document.documentElement.hasAttribute('data-pg-mobile')) {pgia_small_mq='(min-width:0)';pgia_large_mq='(min-width:99999px)'} pgcss+='@media ' + pgia_small_mq + '{ html:not(.pg-ia-no-preview) [data-pg-ia-hide="mobile"] {opacity:0;visibility:hidden;}html:not(.pg-ia-no-preview) [data-pg-ia-show="mobile"] {opacity:1;visibility:visible;display:block;}}';pgcss+='@media ' + pgia_large_mq + '{html:not(.pg-ia-no-preview) [data-pg-ia-hide="desktop"] {opacity:0;visibility:hidden;}html:not(.pg-ia-no-preview) [data-pg-ia-show="desktop"] {opacity:1;visibility:visible;display:block;}}';style.innerHTML=pgcss;document.querySelector('head').appendChild(style);}}catch(e){console&&console.log(e);}})()</script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+        
+        
     </head>
     <body>
         <!-- Bootstrap core JavaScript
@@ -30,13 +38,16 @@
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav mr-auto">
                     <li class="align-items-center d-flex mr-2 nav-item">
-                        <a class="nav-link" href="/index.php">Accueil</a>
+                        <a class="nav-link" href="/index.php"><i class="fa-tachometer-alt fa mr-1"></i>Tableau de bord</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/index.php?action=recherche"><i class="fa-folder-open far mr-1"></i>Recherche</a>
+                        <a class="nav-link" href="/index.php?action=recherche"><i class="fa-search fa mr-1"></i>Recherche</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/index.php?action=insertion_formulaire"><i class="fa-edit far mr-1"></i>Ajout</a>
+                        <a class="nav-link" href="/index.php?action=insertion_formulaire"><i class="fa-plus-circle fa mr-1"></i>Ajout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index.php#cont-stats"><i class="fa-chart-pie fa mr-1"></i>Statistiques</a>
                     </li>
                 </ul>
             </div>

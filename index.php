@@ -14,6 +14,8 @@ if(!empty($_GET['action']))
 
     if($action == 'home')
     {
+        stats_repartition();
+        stats_stock();
         require_once './views/home.php';
     }
 
@@ -53,13 +55,15 @@ if(!empty($_GET['action']))
 
     else
     {
-        $familles = familles_requetes(); //Pour le formulaire, champ famille
+        stats_repartition();
+        stats_stock();
         require_once './views/home.php';
     }
 }
 
 else
 {
-    $familles = familles_requetes(); //Pour le formulaire, champ famille
+    stats_repartition();
+    stats_stock();
     require_once './views/home.php';
 }
