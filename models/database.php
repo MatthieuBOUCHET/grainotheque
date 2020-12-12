@@ -26,7 +26,7 @@ class BDD extends PDO
         }
     }
 
-    //SELECT
+    //RECHERCHE
     /**
      * Fonction construisant la requête SQL à partir des données du formulaire
      *
@@ -112,7 +112,8 @@ class BDD extends PDO
             $sql = $sql.$sql_3;
 
 
-            // print_r($sql);
+            //print_r($sql);
+            //print_r($params);
             $this->sql = $sql;
             $this->params = $params;
             return 0;
@@ -132,6 +133,7 @@ class BDD extends PDO
     {
         $this->construction_sql($params);
 
+        //print_r($this->params);
         $req = $this->prepare($this->sql);
         $req->execute($this->params);
 
@@ -141,7 +143,6 @@ class BDD extends PDO
             }
         
         
-        //print_r($this->sql);
         $req->closeCursor();
         return $resultats;
     }
@@ -180,7 +181,7 @@ class BDD extends PDO
         //VERIFICATION
         if(!isset($params['categorie']))
         {
-            redirection('/index.php');
+            redirection();
         }
         
         switch($params['categorie'])
@@ -206,7 +207,7 @@ class BDD extends PDO
         unset($params['categorie']);
 
         if (count($params) == 0){
-            redirection('/index.php');
+            redirection();
         }
 
         //INSERT
@@ -253,22 +254,116 @@ class BDD extends PDO
     public function ajout($params)
     {
         $this->construction_sql_insert($params);
-        print_r($this->sql);
+        //print_r($this->sql);
 
         $req = $this->prepare($this->sql);
 
         try {
             $req->execute($this->params);
-            redirection('/index.php');
+            redirection();
         }
 
         catch(Exception $e)
         {
-            echo('<div class="alert alert-danger mt-5 shadow-none text-center" role="alert">
-            Insertion impossible, redirection vers le formulaire dans 10 secondes ...
-            </div>');
-            sleep(10);
-            redirection('/index.php?action=insertion_formulaire)');
+            redirection();
+        }
+    }
+
+    //UPDATE
+    private function construction_sql_update($params)
+    {
+        //VERIFICATION
+        if(!isset($params['categorie']))
+        {
+            redirection();
+        }
+
+        if(!isset($params['id']))
+        {
+            redirection();
+        }
+
+        $sql = 'UPDATE ';
+        $id = $params['id'];
+        $categorie = $params['categorie'];
+
+        unset($params['categorie']);
+        unset($params['id']);
+
+        switch($categorie)
+        {
+            case 1:
+                $champs = ['espece','stock','latin',
+                'famille','cycle','couleur','debut_floraison','fin_floraison',
+                'hauteur','debut_semis','fin_semis','type_semis','culture',
+                'technique','exposition','pollinisateur','infos'];
+                break;
+            
+            case 3:
+                $champs = ['espece','stock','latin',
+                'famille','cycle','couleur','debut_floraison','fin_floraison',
+                'hauteur','debut_semis','fin_semis','type_semis','ecartement_entre_lignes',
+                'ecartement_sur_lignes','technique','exposition','pollinisateur','infos'];
+                break;
+
+            default: //Aromatiques et horticoles
+                $champs = ['espece','stock','latin',
+                'famille','cycle','couleur','debut_floraison','fin_floraison',
+                'hauteur','debut_semis','fin_semis','type_semis',
+                'technique','exposition','pollinisateur','infos'];
+                break;
+        }
+
+        $sql = $sql.$this->switch_table($categorie);
+        $sql = $sql.(' SET ');
+
+        foreach($champs as $champ)
+        {
+            if(!array_key_exists($champ,$params))
+            {
+                $params[$champ] = NULL;
+            }
+        }
+
+        $fin = count($champs);
+        $i = 1;
+        foreach($champs as $champ)
+        {
+            $sql = $sql.$champ;
+            $sql = $sql.' = :';
+            $sql = $sql.$champ;
+
+            if($i != $fin)
+            {
+                $sql = $sql.',';
+            }
+
+            $i++;
+        }
+
+        $sql = $sql.' WHERE id = :id';
+        $params['id'] = $id;
+
+        $this->sql = $sql;
+        $this->params = $params;
+    }
+    
+    public function update($params)
+    {
+        //print_r($params);
+        $this->construction_sql_update($params);
+        //print_r($this->sql);
+
+        $req = $this->prepare($this->sql);
+
+        try {
+            $req->execute($this->params);
+            //redirection();
+        }
+
+        catch(Exception $e)
+        {
+            redirection();
         }
     }
 
@@ -344,13 +439,12 @@ class BDD extends PDO
     }
 }
 
-function recherche()
+function recherche($utilisateur)
 {
-    $datas = new Formsdatas;
     $db = new BDD;
-    $utilisateur = $datas->getdonnees();
 
     $resultats = $db->recherche($utilisateur);
+    //print_r($resultats);
     $db = null;
 
     return $resultats;
@@ -363,6 +457,19 @@ function ajout()
     $entrees = $datas->getdonnees();
     $db->ajout($entrees);
     $db = null;
+
+}
+
+function update()
+{
+    $datas = new Formsdatas();
+    $db = new BDD;
+    $entrees = $datas->getdonnees();
+
+    $db->update($entrees);
+    $db = null;
+    header('Location:/index.php?action=voir_tout');
+    exit();
 
 }
 

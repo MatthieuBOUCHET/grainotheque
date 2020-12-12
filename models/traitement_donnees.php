@@ -64,7 +64,7 @@ else{
  * Décode les données
  *
  * @param [DICT] $resultats
- * @return void
+ * @return [DICT] $ensemble
  */
 function decode_donnees($ensemble)
 {
@@ -143,9 +143,14 @@ function decode_donnees($ensemble)
         }
         else
         {
-            $ensemble['culture'] = '';
+            $ensemble['culture'] = 'Non';
         }
 
+        foreach($ensemble as $key=>$value){
+            if(is_int($key)){
+                unset($ensemble[$key]);
+            }
+        }
             
             
         

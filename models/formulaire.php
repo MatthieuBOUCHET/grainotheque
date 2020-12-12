@@ -26,15 +26,15 @@ class Formsdatas
 
     private function securisationPOST()
     {
-    foreach ($_POST as $key => $value) {
-        $sPOST[$key]=htmlspecialchars($value);
-        $sPOST[$key]=stripslashes($sPOST[$key]);
-        $sPOST[$key]=trim($sPOST[$key]);
-        
+        foreach ($_POST as $key => $value) {
+            $sPOST[$key]=htmlspecialchars($value);
+            $sPOST[$key]=stripslashes($sPOST[$key]);
+            $sPOST[$key]=trim($sPOST[$key]);
+            
 
-    }
+        }
 
-    return($sPOST);
+        return($sPOST);
     }
 
     /**
@@ -59,7 +59,7 @@ class Formsdatas
 
             //Autres
             else if($value == "0"){
-                if($key != 'categorie')
+                if($key != 'categorie' & $key != 'stock')
                 {
                     unset($this->donnees[$key]);
                 }
@@ -67,7 +67,15 @@ class Formsdatas
             }
 
             else if($value == ""){
-                unset($this->donnees[$key]);
+                if($key == 'culture' || $key=='pollinisateur')
+                {
+                    $this->donnees[$key] == 0;
+                }
+                else
+                {
+                    unset($this->donnees[$key]);
+                }
+                
             }
         }
     }

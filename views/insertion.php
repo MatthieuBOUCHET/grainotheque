@@ -103,6 +103,11 @@ $html_1 = "<div class='container mb-4 mt-4 pb-1 pl-auto pt-1'>
     </div>
 
     <div class='form-group'>
+        <label for='type_semis'>Type de semis</label>
+        <textarea class='form-control' name='type_semis'></textarea>
+    </div>
+
+    <div class='form-group'>
         <label for='technique'>Technique</label>
         <textarea class='form-control' name='technique'></textarea>
     </div>

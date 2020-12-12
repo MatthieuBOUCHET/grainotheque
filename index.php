@@ -1,5 +1,6 @@
 <?php
-//Désolé TWFyaW5lIEJhdGFpbGxl, vraiment :)
+//Désolé TWFyaW5lIEJhdGFpbGxl, vraiment désolé:)
+
 session_start();
 require_once('./models/general.php');
 require_once('./models/database.php');
@@ -12,58 +13,88 @@ if(!empty($_GET['action']))
 {
     $action = filter_input(INPUT_GET, 'action');
 
-    if($action == 'home')
+    switch($action)
     {
-        stats_repartition();
-        stats_stock();
-        require_once './views/home.php';
-    }
+        //Page d'accueil
+        case 'home':
+            accueil();
+            break;
 
-    else if($action == 'recherche')
-    {
-        $familles = familles_requetes(); //Pour le formulaire, champ famille
-        require_once './views/recherche.php';
-    }
-    
-    else if($action == 'resultats')
-    {
-        $resultats = recherche();
-        if(count($_POST) == 0)
-        {
-            header('Location:index.php');
-        }
+        //Formulaires
+        case 'recherche':
+            $familles = familles_requetes(); //Pour le formulaire, champ famille
+            require_once './views/recherche.php';
+            break;
+        
+        case 'insertion_formulaire':
+            $familles = familles_requetes(); //Pour le formulaire, champ famille
+            require_once './views/insertion.php';
+            break;
+        
+        //Pages de résultats
+        case 'resultats':
+            $datas = new Formsdatas;
+            $resultats = recherche($datas->getdonnees());
+                
+            if(count($_POST) == 0)
+            {
+                redirection();
+            }
+            require_once './views/resultats.php';
+            break;
+            
+        //Voir tout
+        case 'voir_tout':
+            $resultats = recherche(['categorie'=>0]);
+            //print_r($resultats);
 
+            if(count($resultats) == 0)
+            {
+                $resultats = false;
+            }
 
-        if(count($resultats) == 0)
-        {
-            $resultats = false;
-        }
+            require_once './views/resultats.php';
+            break;
+        
+        //Traitement du formulaire d'insertion
+        case 'insertion':
+            print_r($_POST);
+            //ajout();
+            break;
 
-        require_once './views/resultats.php';
-    }
+        //Traitement du formulaire de modification
+        case 'modification':
+            $familles = familles_requetes();
+            $categorie = filter_input(INPUT_GET,'categorie');
+            $id = filter_input(INPUT_GET,'id');
 
-    else if($action == 'insertion_formulaire')
-    {
-        $familles = familles_requetes(); //Pour le formulaire, champ famille
-        require_once './views/insertion.php';
-    }
+            $resultats = recherche(['categorie'=>$categorie,'id'=>$id]);
+            $resultats = $resultats[$categorie][0];
 
-    else if($action == 'insertion')
-    {
-        ajout();
-    }
-
-    else
-    {
-        stats_repartition();
-        stats_stock();
-        require_once './views/home.php';
+            if(count($resultats) == 0)
+            {
+                $resultats = false;
+                require_once './views/resultats.php'; //Pas de résultats
+                break;
+            }
+            else
+            {
+                require_once './views/modification_form.php';
+                break;
+            }
+        
+        case 'modification_bdd':
+            update();
+            break;
+        
+        default:
+            accueil();
+            break;
+            
     }
 }
 
 else
 {
-    stats_repartition();
-    stats_stock();
-    require_once './views/home.php';
+    accueil();
 }

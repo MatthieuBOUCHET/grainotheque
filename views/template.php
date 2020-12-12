@@ -38,17 +38,21 @@
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav mr-auto">
                     <li class="align-items-center d-flex mr-2 nav-item">
-                        <a class="nav-link" href="/index.php"><i class="fa-tachometer-alt fa mr-1"></i>Tableau de bord</a>
+                        <a class="nav-link" href="/index.php"><i class="fa-house-user fa mr-1"></i>Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/index.php?action=recherche"><i class="fa-search fa mr-1"></i>Recherche</a>
+                        <a class="nav-link" href="/index.php?action=recherche"><i class="fa-search fa mr-1"></i>Recherche & Modification</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/index.php?action=insertion_formulaire"><i class="fa-plus-circle fa mr-1"></i>Ajout</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="/index.php?action=voir_tout"><i class="fa-stream fa mr-1"></i>Voir tout</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="/index.php#cont-stats"><i class="fa-chart-pie fa mr-1"></i>Statistiques</a>
                     </li>
+                    
                 </ul>
             </div>
         </nav>
