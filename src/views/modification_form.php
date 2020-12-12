@@ -2,7 +2,7 @@
 
 $html = "
 <div class='container mb-4 mt-4 pb-1 pl-auto pt-1'>
-<h2>Ajout</h2>
+<h2>Modification</h2>
 <form role='form'class='mt-2' action='index.php?action=modification_bdd' method='POST'>
 
     <div class='form-group'>
