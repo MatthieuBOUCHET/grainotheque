@@ -4,13 +4,13 @@ require_once './models/traitement_donnees.php';
 
 ?>
 
-<div class='cont-table ml-2 mr-2'>
+<div class='cont-table ml-auto mr-auto'>
     <h2 class="d-block pb-2 pl-auto pt-2 text-center">Résultats de la recherche</h2>
 
 
         <!--PAS DE RESULTATS-->
         <?php
-        if(gettype($resultats) != 'boolean')
+        if(count($resultats) != 0)
         {
             $titres=[1=>'Fleurs sauvages locales',2=>'Fleurs horticoles',3=>'Légumes',4=>'Aromatiques'];
             
@@ -50,7 +50,7 @@ require_once './models/traitement_donnees.php';
 
         else
         {
-            echo('<div class="alert alert-danger mt-5 shadow-none text-center" role="alert" data-toggle="tooltip" data-placement="top" title="Modifier les paramètres de recherches">
+            echo('<div class="alert alert-danger mt-5 shadow-none text-center" role="alert" >
             Aucun résultat trouvé !
             </div>');
         }

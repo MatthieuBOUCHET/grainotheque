@@ -86,6 +86,10 @@ if(!empty($_GET['action']))
         case 'modification_bdd':
             update();
             break;
+
+        case 'erreur':
+            require_once './views/erreur.php';
+            break;
         
         default:
             accueil();

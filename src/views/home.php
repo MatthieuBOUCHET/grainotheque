@@ -4,12 +4,10 @@ ob_start();
 <div class="card mb-3">
     <img src="../public/img/home_load.jpg" class="ml-auto mr-auto home"/>
     <div class="card-body">
-        <h5 class="card-title">Système de gestion de grainothèque</h5>
-        <p class="card-text">Lucca HOOGENBOSCH - Matthieu BOUCHET - 2020</p>
     </div>
 </div>
 
-<div class="container" id='cont-stats'>
+<div class="container" id='cont-stats' >
     <h2 class="text-center mt-1">Statistiques</h2>
     <div class="d-flex justify-content-between charts">
         <div class="graph w-50">

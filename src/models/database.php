@@ -21,8 +21,8 @@ class BDD extends PDO
 
         catch(PDOException $e)
         {
-            print_r("Erreur !: " . $e->getMessage() . "<br/>");
-            die();
+            header('Location:/index.php?action=erreur&err_msg=DB001');
+            exit();
         }
     }
 
@@ -91,10 +91,13 @@ class BDD extends PDO
             {
                 $sql_3 = $sql_3.$key;
                 
-                if($key == 'stock' || $key == 'hauteur' || $key=='ecartement_entre_lignes' || $key=='ecartement_sur_lignes')
+                $key_superieures = ['stock','hauteur','ecartement_entre_lignes','ecartement_sur_lignes'];
+
+                if(in_array($key,$key_superieures))
                 {
                     $sql_3 = $sql_3.' >= :';
                 }
+
                 else
                 {
                     $sql_3 = $sql_3.' = :';
@@ -444,7 +447,6 @@ function recherche($utilisateur)
     $db = new BDD;
 
     $resultats = $db->recherche($utilisateur);
-    //print_r($resultats);
     $db = null;
 
     return $resultats;
