@@ -285,7 +285,7 @@ $html = "
 
     <div class='btn-group d-flex mt-5 justify-content-around'>
         <button type='submit' class='align-content-center btn btn-primary d-block ml-auto mr-3'><i class='far fa-edit mr-2'></i>Mettre à jour</button>
-        <a class='align-content-center btn btn-danger d-block ml-3 mr-auto' href='/index.php?action=suppresion&id=".$id."&categorie=".$categorie."'>
+        <a class='align-content-center btn btn-danger d-block ml-3 mr-auto' href='/index.php?action=suppression&id=".$id."&categorie=".$categorie."'>
         <i class='fas fa-trash mr-2'></i>Supprimer</a>
     </div>
                      
