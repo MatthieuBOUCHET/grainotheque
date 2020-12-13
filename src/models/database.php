@@ -46,28 +46,8 @@ class BDD extends PDO
         $sql_1 = 'SELECT * from ';
         
         //SELECTION TABLE
-        switch($params['categorie'])
-        {
-            case 1:
-                $sql_2 = 'fleurs_sauvages_locales';
-                break;
+        $sql_2 = $this->switch_table($params['categorie']);
 
-            case 2:
-                $sql_2 = 'fleurs_horticoles';
-                break;
-            
-            case 3:
-                $sql_2 = 'legumes';
-                break;
-
-            case 4:
-                $sql_2 = 'aromatiques';
-                break;
-
-            default:
-                redirection($GLOBALS['HOME']);
-                exit();
-        }
         unset($params['categorie']);
 
         $sql = $sql_1.$sql_2; //Construction de la requête, étape 1
@@ -87,11 +67,13 @@ class BDD extends PDO
             $i = 1; //COMPTEUR FIN
             $fin = count($params);
 
+            $key_superieures = ['stock','hauteur','ecartement_entre_lignes','ecartement_sur_lignes'];
+
             foreach($params as $key => $value)
             {
                 $sql_3 = $sql_3.$key;
                 
-                $key_superieures = ['stock','hauteur','ecartement_entre_lignes','ecartement_sur_lignes'];
+                
 
                 if(in_array($key,$key_superieures))
                 {
@@ -187,26 +169,8 @@ class BDD extends PDO
             red_erreur();
         }
         
-        switch($params['categorie'])
-        {
-            case 1:
-                $sql_2 = 'fleurs_sauvages_locales';
-                break;
+        $sql_2 = $this->switch_table($params['categorie']);
 
-            case 2:
-                $sql_2 = 'fleurs_horticoles';
-                break;
-            
-            case 3:
-                $sql_2 = 'legumes';
-                break;
-
-            case 4:
-                $sql_2 = 'aromatiques';
-                break;
-
-            default:
-        }
         unset($params['categorie']);
 
         if (count($params) == 0){
@@ -412,9 +376,9 @@ class BDD extends PDO
             return $sql_2;
     }
 
-    private function construction_sql_stats_repartition($table)
+    private function construction_sql_stats($champ,$table)
     {
-        $sql = 'SELECT COUNT(*) FROM ';
+        $sql = 'SELECT COUNT('.$champ.') FROM ';
         //SELECTION TABLE
         $sql = $sql.$this->switch_table($table);
         //print_r($sql);
@@ -427,11 +391,12 @@ class BDD extends PDO
         $resultats=[];
         for($i=1;$i<=4;$i++)
         {
-            $this->construction_sql_stats_repartition($i);
+            $this->construction_sql_stats('*',$i);
             $req = $this->prepare($this->sql);
             $req->execute();
             array_push($resultats,$req->fetch()[0]);
         }
+        //print_r($resultats);
         return $resultats;
     }
 
@@ -477,6 +442,8 @@ function ajout()
     $entrees = $datas->getdonnees();
     $db->ajout($entrees);
     $db = null;
+    header('Location:/index.php?action=voir_tout');
+    exit();
 
 }
 
@@ -532,5 +499,3 @@ function familles_requetes()
 
     return $familles;
 }
-
-//suppression();

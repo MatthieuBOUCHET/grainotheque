@@ -14,18 +14,30 @@ ob_start();
             <h4 class="text-center">Répartition</h4>
             <canvas id='repartition'></canvas>
             <script>
-                var ctx = $('#repartition');
-                var graph_1 = repartition_graph(ctx,getCookie('repartition'));
+                var ctx1 = $('#repartition');
             </script>
+
+
+            <script>
+                var ctx2 = $('#repartition_bar');
+                var graphs = repartition_graph([ctx1,ctx2],getCookie('repartition'));
+            </script>
+            <!--<canvas id='repartition_bar'></canvas>
+            -->
         </div>
         
         <div class="graph w-50">
             <h4 class="text-center">Stocks</h4>
             <canvas id='stock'></canvas>
             <script>
-                var ctx = $('#stock');
-                var graph_2 = stock_graph(ctx,getCookie('stock'));
+                var ctx1 = $('#stock');
             </script>
+
+            <!--<canvas id='stock_bar'></canvas>-->
+            <script>
+                var ctx2 = $('#stock_bar');
+                var graphs = stock_graph([ctx1,ctx2],getCookie('stock'));
+            </script>-->
         </div>
     </div>
 </div>

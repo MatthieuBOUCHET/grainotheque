@@ -7,7 +7,7 @@ function getCookie(name) {
 
 function repartition_graph(ctx,datas_bdd)
 {
-    var chart = new Chart(ctx, {
+    var chart = new Chart(ctx[0], {
         type: 'doughnut',
         data: {
             datasets: [{data: datas_bdd,backgroundColor:[
@@ -28,7 +28,29 @@ function repartition_graph(ctx,datas_bdd)
         },
     });
 
-    return chart
+    /*var bar_chart = new Chart(ctx[1], {
+        type: 'bar',
+        data: {
+            datasets: [{data: datas_bdd,backgroundColor:[
+                '#264478',
+                '#264478',
+                '#A5A5A5',
+                '#4472C4'
+            ],label:['Répartition'],},
+        ],
+        
+            // These labels appear in the legend and in the tooltips when hovering different arcs
+            labels: [
+                'Fleurs sauvages locales',
+                'Fleurs horticoles exotiques',
+                'Légumes',
+                'Aromatiques'
+            ]
+        },
+    });
+
+    return [chart,bar_chart];*/
+    return[chart];
 }
 
 function stock_graph(ctx,datas_bdd)
@@ -46,10 +68,27 @@ function stock_graph(ctx,datas_bdd)
     sum_stock_dispo -= sum_stock_epuise;
     console.log(sum_stock_dispo);
 
-    var chart = new Chart(ctx, {
+    var chart = new Chart(ctx[0], {
         type: 'doughnut',
         data: {
             datasets: [{data: [sum_stock_epuise,sum_stock_dispo],
+                backgroundColor:[
+                '#f21b1b',
+                '#1bf26d'
+            ]},
+        ],
+
+            labels: [
+                'Stock épuisé',
+                'Stock disponible'
+            ]
+        },
+    });
+
+    /*var chart_bar = new Chart(ctx[1], {
+        type: 'horizontalBar',
+        data: {
+            datasets: [{data: [sum_stock_epuise,sum_stock_dispo], label:['Etats des stocks'],
                 backgroundColor:[
                 '#f21b1b',
                 '#1bf26d'
@@ -62,7 +101,10 @@ function stock_graph(ctx,datas_bdd)
                 'Stock disponible'
             ]
         },
+
+        
     });
 
-    return chart
+    return [chart,chart_bar]*/
+    return[chart];
 }

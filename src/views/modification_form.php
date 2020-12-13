@@ -1,5 +1,4 @@
 <?php
-
 $html = "
 <div class='container mb-4 mt-4 pb-1 pl-auto pt-1'>
 <h2>Modification</h2>
@@ -188,7 +187,7 @@ $html = "
 
     <div class='form-group'>
         <label for='type_semis'>Type de semis</label>
-        <textarea class='form-control' name='type_semis'></textarea>
+        <textarea class='form-control' name='type_semis'>").$resultats['type_semis'].("</textarea>
     </div>
 
     <div class='form-group'>
