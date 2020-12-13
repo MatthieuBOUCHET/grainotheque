@@ -56,7 +56,7 @@
                         <a class="nav-link" href="https://grainesdebiodiverscite.fr/" target="_blank"><i class="fa-external-link-alt fa mr-1"></i>Graines de Bio-Divers-Cités</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://fr.wikipedia.org/wiki/Grainoth%C3%A8que" target="_blank"><i class="fab fa-wikipedia-w mr-1"></i>En savoir plus sur les grainothèques ...</a>
+                        <a class="nav-link" href="https://fr.wikipedia.org/wiki/Grainoth%C3%A8que" target="_blank"><i class="fab fa-wikipedia-w mr-1"></i>En savoir plus sur les grainothèques</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="mailto:matthieu.bouchet@outlook.com;lucca.hoogenbosch@auxlazaristeslasalle.fr?subject=Contact sur la grainothèque" target="_blank"><i class="far fa-address-card mr-1"></i>Contact</a>

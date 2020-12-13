@@ -126,7 +126,7 @@ $html_1 = "<div class='container mb-4 mt-4 pb-1 pl-auto pt-1'>
         </label>                                         
     </div>
 
-    <button type='submit' class='align-content-center btn btn-primary d-block justify-content-center ml-auto mr-auto mt-4'>Rechercher</button>                 
+    <button type='submit' class='align-content-center btn btn-primary d-block ml-auto mr-auto mt-4'><i class='fas fa-search mr-2'></i>Rechercher</button>                 
 </form>
 </div>
 ";

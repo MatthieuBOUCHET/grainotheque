@@ -114,10 +114,10 @@ $html = "
 
     <div class='d-flex flex-row form-row justify-content-center text-left'>");
 
-        $id=['debut_floraison'=>'Début de floraison/récolte',
+        $champs=['debut_floraison'=>'Début de floraison/récolte',
         'fin_floraison'=>'Fin de floraison/récolte','debut_semis'=>'Début semis','fin_semis'=>'Fin semis'];
         
-        foreach($id as $key => $value)
+        foreach($champs as $key => $value)
         {
             $html = $html.("<div class='form-group ml-4 mr-4'>
                 <label for=".$key.">".$value."</label>
@@ -280,10 +280,15 @@ $html = "
         }
 
         $html = $html.("> Utile pollinisateur </label>");
-                                           
+                                 
     $html = $html.("</div>
 
-    <button type='submit' class='align-content-center btn btn-primary d-block justify-content-center ml-auto mr-auto mt-4'>Mettre à jour</button>                 
+    <div class='btn-group d-flex mt-5 justify-content-around'>
+        <button type='submit' class='align-content-center btn btn-primary d-block ml-auto mr-3'><i class='far fa-edit mr-2'></i>Mettre à jour</button>
+        <a class='align-content-center btn btn-danger d-block ml-3 mr-auto' href='/index.php?action=suppresion&id=".$id."&categorie=".$categorie."'>
+        <i class='fas fa-trash mr-2'></i>Supprimer</a>
+    </div>
+                     
 </form>
 </div>
 ");

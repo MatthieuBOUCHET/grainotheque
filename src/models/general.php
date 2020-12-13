@@ -21,6 +21,17 @@ function accueil(){
 
 }
 
+/**
+ * Redirection en cas d'erreur
+ *
+ * @return void
+ */
+function red_erreur()
+{
+    header('Location:/index.php?action=erreur?mess_err=DB002');
+    exit();
+}
+
 
 /**
  * Affichage du tableau de résultats
@@ -36,7 +47,7 @@ function affichage_tableau($ligne,$categorie){
         case 1:
             $t1 = 
             "<tr>
-            <th><a class='btn btn-dark' href='index.php?action=modification&categorie=".$categorie."&id=".$ligne['id']."'>Modifier</a></th>
+            <th><a class='btn btn-dark' href='index.php?action=modification&categorie=".$categorie."&id=".$ligne['id']."'><i class='far fa-edit mr-1'></i>Modifier</a></th>
             <th>".$ligne['espece']."</th>
             <td><i>".$ligne['latin']."</i></td>
             <td>".$ligne['stock']."</td>
@@ -60,7 +71,7 @@ function affichage_tableau($ligne,$categorie){
         case 3:
             $t3 = 
             "<tr>
-            <th><a class='btn btn-dark' href='index.php?action=modification&categorie=".$categorie."&id=".$ligne['id']."'>Modifier</a></th>
+            <th><a class='btn btn-dark' href='index.php?action=modification&categorie=".$categorie."&id=".$ligne['id']."'><i class='far fa-edit mr-1'></i>Modifier</a></th>
             <th>".$ligne['espece']."</th>
             <th>".$ligne['variete']."</th>
             <td><i>".$ligne['latin']."</i></td>
@@ -87,7 +98,7 @@ function affichage_tableau($ligne,$categorie){
             
 
             $t_o = "<tr>
-            <th><a class='btn btn-dark' href='index.php?action=modification&categorie=".$categorie."&id=".$ligne['id']."'>Modifier</a></th>
+            <th><a class='btn btn-dark' href='index.php?action=modification&categorie=".$categorie."&id=".$ligne['id']."'><i class='far fa-edit mr-1'></i>Modifier</a></th>
             <th>".$ligne['espece']."</th>
             <td><i>".$ligne['latin']."</i></td>
             <td>".$ligne['stock']."</td>

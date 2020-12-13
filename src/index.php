@@ -58,8 +58,8 @@ if(!empty($_GET['action']))
         
         //Traitement du formulaire d'insertion
         case 'insertion':
-            print_r($_POST);
-            //ajout();
+            //print_r($_POST);
+            ajout();
             break;
 
         //Traitement du formulaire de modification
@@ -75,18 +75,23 @@ if(!empty($_GET['action']))
             {
                 $resultats = false;
                 require_once './views/resultats.php'; //Pas de résultats
-                break;
             }
             else
             {
-                require_once './views/modification_form.php';
-                break;
+                require_once './views/modification_form.php'; 
             }
+            break;
         
         case 'modification_bdd':
             update();
             break;
 
+        //Traitement du formulaire de suppression
+        case 'suppression':
+            suppression();
+            break;
+
+        //Page d'erreur
         case 'erreur':
             require_once './views/erreur.php';
             break;

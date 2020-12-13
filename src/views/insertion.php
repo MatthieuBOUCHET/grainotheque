@@ -16,7 +16,7 @@ $html_1 = "<div class='container mb-4 mt-4 pb-1 pl-auto pt-1'>
 
     <div class='form-group'>
         <label for='espece'>Espèce</label>
-        <input type='text' class='form-control espece' name='espece' placeholder='Achillée Millefeuille' data-pg-name='espece'>
+        <input type='text' class='form-control espece' name='espece' placeholder='Achillée Millefeuille' required>
     </div>
 
     <div class='form-group'>
@@ -146,7 +146,9 @@ $html_1 = "<div class='container mb-4 mt-4 pb-1 pl-auto pt-1'>
         </label>                                         
     </div>
 
-    <button type='submit' class='align-content-center btn btn-primary d-block justify-content-center ml-auto mr-auto mt-4'>Ajouter</button>                 
+    <button type='submit' class='align-content-center btn btn-primary d-block ml-auto mr-auto mt-4'>
+        <i class='fas fa-plus-circle mr-2'></i>Ajouter
+    </button>                 
 </form>
 </div>
 ";

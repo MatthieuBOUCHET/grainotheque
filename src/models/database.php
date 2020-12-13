@@ -38,7 +38,7 @@ class BDD extends PDO
         //VERIFICATION
         if(!isset($params['categorie']))
         {
-            redirection($GLOBALS['HOME']);
+            red_erreur();
         }
         
 
@@ -184,7 +184,7 @@ class BDD extends PDO
         //VERIFICATION
         if(!isset($params['categorie']))
         {
-            redirection();
+            red_erreur();
         }
         
         switch($params['categorie'])
@@ -268,7 +268,7 @@ class BDD extends PDO
 
         catch(Exception $e)
         {
-            redirection();
+            red_erreur();
         }
     }
 
@@ -278,12 +278,12 @@ class BDD extends PDO
         //VERIFICATION
         if(!isset($params['categorie']))
         {
-            redirection();
+            red_erreur();
         }
 
         if(!isset($params['id']))
         {
-            redirection();
+            red_erreur();
         }
 
         $sql = 'UPDATE ';
@@ -368,6 +368,24 @@ class BDD extends PDO
         {
             redirection();
         }
+    }
+
+    //SUPPRESSION
+    private function construction_sql_suppression($id,$categorie)
+    {
+        $sql = 'DELETE FROM ';
+        $sql = $sql.$this->switch_table($categorie);
+        $sql = $sql.' WHERE id=:id';
+
+        $this->sql = $sql;
+        $this->params = ['id'=>$id];
+    }
+
+    public function suppression($id,$categorie)
+    {
+        $this->construction_sql_suppression($id,$categorie);
+        $req = $this->prepare($this->sql);
+        $req->execute($this->params);
     }
 
     //STATS
@@ -472,7 +490,16 @@ function update()
     $db = null;
     header('Location:/index.php?action=voir_tout');
     exit();
+}
 
+function suppression()
+{
+    $db = new BDD;
+
+    $db->suppression(filter_input(INPUT_GET,'id'),filter_input(INPUT_GET,'categorie'));
+    $db = null;
+    header('Location:/index.php?action=voir_tout');
+    exit();
 }
 
 function stats_repartition()
@@ -505,3 +532,5 @@ function familles_requetes()
 
     return $familles;
 }
+
+//suppression();
