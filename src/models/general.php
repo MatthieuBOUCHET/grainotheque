@@ -73,7 +73,7 @@ function affichage_tableau($ligne,$categorie){
             "<tr>
             <th><a class='btn btn-dark' href='index.php?action=modification&categorie=".$categorie."&id=".$ligne['id']."'><i class='far fa-edit mr-1'></i>Modifier</a></th>
             <th>".$ligne['espece']."</th>
-            <th>".$ligne['variete']."</th>
+            <td>".$ligne['variete']."</th>
             <td><i>".$ligne['latin']."</i></td>
             <td>".$ligne['stock']."</td>
             <td>".$ligne['famille']."</td>      

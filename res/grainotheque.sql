@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  Dim 13 déc. 2020 à 15:02
+-- Généré le :  Dim 13 déc. 2020 à 15:21
 -- Version du serveur :  8.0.18
 -- Version de PHP :  7.3.12
 
@@ -139,7 +139,7 @@ INSERT INTO `fleurs_sauvages_locales` (`id`, `espece`, `stock`, `latin`, `famill
 (18, 'Chicorée sauvage', 13, 'Cichorium intybus', 'Astéracées', 3, 5, 5, 10, 120, 3, 5, '', 0, '', 1, 1, ''),
 (19, 'Clématite des haies', 6, 'Clematis vitalba', '', 0, 1, 0, 0, 0, 0, 0, '', 0, 'Bouture herbacée mai juin ou bois aoûté', 0, 1, ''),
 (20, 'Coquelicot', 7, 'Papaver rhoeas', 'Papaveracées', 1, 0, 4, 8, 50, 9, 4, '', 0, '', 1, 1, 'Messicole'),
-(21, 'Fenouil', 12, 'Foeniculum ?', 'Apiacées', 3, 2, 7, 10, 127, 4, 5, '', 0, '', 1, 1, ''),
+(21, 'Fenouil', 12, 'Foeniculum', 'Apiacées', 3, 2, 7, 10, 127, 4, 5, '', 0, '', 1, 1, ''),
 (22, 'Grande marguerite', 14, 'Leucanthemum vulgare', 'Asteracées', 3, 1, 4, 8, 60, 3, 5, '', 0, 'Divisions printemps ou automne', 1, 1, ''),
 (23, 'Réséda des teinturiers', 8, 'Reseda Luteola', 'Résédacées', 2, 2, 6, 9, 120, 6, 9, '', 0, '', 1, 1, 'Plante tinctoriale'),
 (24, 'Linaire commune', 6, 'Linaria vulgaris', 'Plantaginacées', 3, 2, 6, 10, 40, 3, 5, '', 0, '', 4, 1, ''),

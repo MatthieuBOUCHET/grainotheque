@@ -150,6 +150,11 @@ function decode_donnees($ensemble)
             if(is_int($key)){
                 unset($ensemble[$key]);
             }
+            
+            if(($value === '0' || $value === '') & $key!='stock')
+            {
+                $ensemble[$key] = 'Inconnu';
+            }
         }
             
             
