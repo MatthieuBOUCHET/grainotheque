@@ -10,7 +10,7 @@ function redirection(){
 }
 
 /**
- * Fonctions accueil
+ * Fonctions d'accueil
  *
  * @return void
  */
@@ -34,7 +34,7 @@ function red_erreur()
 
 
 /**
- * Affichage du tableau de résultats
+ * Affichage du tableau de résultats et décodage des données
  *
  * @param [DICT] $ligne, Ligne de données
  * @param [INT] $categorie, catégorie 1<=4
@@ -42,7 +42,7 @@ function red_erreur()
  */
 function affichage_tableau($ligne,$categorie){
     $ligne = decode_donnees($ligne);
-    //<a href='index.php?action=modification&categorie=".$categorie."&id=".$ligne['id']."
+
     switch($categorie){
         case 1:
             $t1 = 
@@ -118,8 +118,9 @@ function affichage_tableau($ligne,$categorie){
             echo($t_o);
     }
 }
-//CONSTANTES
+//SNIPPETS HTML
 $t_1 = "
+<div class='cont_table'>
 <table class='mt-1 mw-100 table w-100'>
 <thead>
 <tr>

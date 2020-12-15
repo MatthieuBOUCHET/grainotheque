@@ -10,6 +10,9 @@ class BDD extends PDO
     private $params;
     private $sql;
 
+    /**
+     * COnstructeur
+     */
     public function __construct()
     {
         try 
@@ -28,9 +31,9 @@ class BDD extends PDO
 
     //RECHERCHE
     /**
-     * Fonction construisant la requête SQL à partir des données du formulaire
+     * Fonction construisant la requête SQL de recherche à partir des données du formulaire
      *
-     * @param [DICT] $params, 
+     * @param array $params, 
      * @return void
      */
     private function construction_sql($params)
@@ -110,9 +113,9 @@ class BDD extends PDO
     /**
      * Fonction exécutant et renvoyant les résultations de la requête
      *
-     * @param [DICT] $params, construit par la méthode `getdonnees()`de `FormsDatas`
-     * @param [DICT] $resultats, liste de résultats, vide par défaut
-     * @return void
+     * @param array $params, construit par la méthode `getdonnees()`de `FormsDatas`
+     * @param array $resultats, liste de résultats, vide par défaut
+     * @return $resultats, résultats des requêtes
      */
     private function requete_selection($params,$resultats=[])
     {
@@ -132,6 +135,12 @@ class BDD extends PDO
         return $resultats;
     }
 
+    /**
+     * Fonction recherchant dans la base de données en fonction de la catégorie de la recherhce
+     *
+     * @param array $params, liste des paramètres
+     * @return array $ensemble, liste de liste de l'ensemble des résultats
+     */
     public function recherche($params)
     {
 
@@ -161,6 +170,13 @@ class BDD extends PDO
     }
 
     //INSERTION
+    /**
+     * Requpete construisant par concaténation la requête SQL pour l'insertion et modifiant le
+     * dictionnaire de paramètres
+     *
+     * @param array $params, paramètres de l'utilisateurs
+     * @return void, passe les résultats en attribut
+     */
     private function construction_sql_insert($params)
     {
         //VERIFICATION
@@ -218,6 +234,13 @@ class BDD extends PDO
         $this->params = $params;
     }
 
+    /**
+     * FOnction publique reprenant la construction de requête et l'exécutant
+     * selon les paramètres
+     *
+     * @param array $params, liste des paramètres
+     * @return void, exécute la requête
+     */
     public function ajout($params)
     {
         $this->construction_sql_insert($params);
@@ -227,7 +250,7 @@ class BDD extends PDO
 
         try {
             $req->execute($this->params);
-            redirection();
+            //redirection();
         }
 
         catch(Exception $e)
@@ -237,6 +260,13 @@ class BDD extends PDO
     }
 
     //UPDATE
+    /**
+     * Fonction privée construisant par concaténation la requête de MAJ
+     * de la BDD et modifiant les paramètres en conséquence
+     *
+     * @param array $params, dictionnaire des paramètres utilisateurs
+     * @return void, passe en attributs
+     */
     private function construction_sql_update($params)
     {
         //VERIFICATION
@@ -315,6 +345,13 @@ class BDD extends PDO
         $this->params = $params;
     }
     
+    /**
+     * Fonction exécutant la requête SQL de modification en fonction
+     * des paramètres utilisateurs
+     *
+     * @param array $params
+     * @return void
+     */
     public function update($params)
     {
         //print_r($params);
@@ -325,7 +362,6 @@ class BDD extends PDO
 
         try {
             $req->execute($this->params);
-            //redirection();
         }
 
         catch(Exception $e)
@@ -335,6 +371,13 @@ class BDD extends PDO
     }
 
     //SUPPRESSION
+    /**
+     * Fonction construisant la requête SQL de suppression
+     *
+     * @param INT $id
+     * @param INT $categorie
+     * @return void
+     */
     private function construction_sql_suppression($id,$categorie)
     {
         $sql = 'DELETE FROM ';
@@ -345,6 +388,13 @@ class BDD extends PDO
         $this->params = ['id'=>$id];
     }
 
+    /**
+     * Fonction executant la requête de suppression
+     *
+     * @param INT $id
+     * @param INT $categorie
+     * @return void
+     */
     public function suppression($id,$categorie)
     {
         $this->construction_sql_suppression($id,$categorie);
@@ -353,6 +403,12 @@ class BDD extends PDO
     }
 
     //STATS
+    /**
+     * Fonction d'optimisation de choix de table
+     *
+     * @param INT $table
+     * @return void
+     */
     private function switch_table($table)
     {
         switch($table)
@@ -376,6 +432,13 @@ class BDD extends PDO
             return $sql_2;
     }
 
+    /**
+     * Fonction construisant les requêtes SQL de stats
+     *
+     * @param INT $champ
+     * @param INT $table, 1 <= 4
+     * @return void
+     */
     private function construction_sql_stats($champ,$table)
     {
         $sql = 'SELECT COUNT('.$champ.') FROM ';
@@ -386,6 +449,11 @@ class BDD extends PDO
     }
     
 
+    /**
+     * Exportation des stats. Création des cookies
+     *
+     * @return array $resultats
+     */
     public function stats_repartition()
     {
         $resultats=[];
@@ -400,6 +468,12 @@ class BDD extends PDO
         return $resultats;
     }
 
+    /**
+     * Fonction construisant les requêtes SQL de stats
+     *
+     * @param INT $table, 1 <= 4
+     * @return void
+     */
     private function construction_sql_stats_stock($table)
     {
         $sql = 'SELECT COUNT(*) FROM ';
@@ -410,6 +484,11 @@ class BDD extends PDO
         $this->sql = $sql;
     }
 
+    /**
+     * Exportation des stats. Création des cookies
+     *
+     * @return ARRAY $resultats
+     */
     public function stats_stock()
     {
         $resultats=[];
@@ -425,6 +504,12 @@ class BDD extends PDO
     }
 }
 
+/**
+ * Fonction de recherche envoyée au contrôleur
+ *
+ * @param array $utilisateur, données utilisateur
+ * @return array $resultats
+ */
 function recherche($utilisateur)
 {
     $db = new BDD;
@@ -435,6 +520,12 @@ function recherche($utilisateur)
     return $resultats;
 }
 
+/**
+ * Fonction d'ajout envoyée au contrôleur
+ *
+ * @param array $utilisateur, données utilisateur
+ * @return void
+ */
 function ajout()
 {
     $datas = new Formsdatas();
@@ -447,6 +538,12 @@ function ajout()
 
 }
 
+/**
+ * Fonction de MAJ envoyée au contrôleur
+ *
+ * @param array $utilisateur, données utilisateur
+ * @return void
+ */
 function update()
 {
     $datas = new Formsdatas();
@@ -459,6 +556,12 @@ function update()
     exit();
 }
 
+/**
+ * Fonction de suppression envoyée au contrôleur
+ *
+ * @param array $utilisateur, données utilisateur
+ * @return void
+ */
 function suppression()
 {
     $db = new BDD;
@@ -469,6 +572,11 @@ function suppression()
     exit();
 }
 
+/**
+ * Fonction de stats, instance un cookie pour lecture JS
+ *
+ * @return void
+ */
 function stats_repartition()
 {
     $db = new BDD;
@@ -478,6 +586,11 @@ function stats_repartition()
     $db = null; 
 }
 
+/**
+ * Fonction de stats, instance un cookie pour lecture JS
+ *
+ * @return void
+ */
 function stats_stock()
 {
     $db = new BDD;
@@ -486,6 +599,12 @@ function stats_stock()
     setcookie('stock',$cookie);  
 }
 
+/**
+ * Fonction implémentée avec le module JSON
+ * Parse et transforme en liste pour affichage HTML
+ *
+ * @return array $familles
+ */
 function familles_requetes()
 {
     //Recup JSON

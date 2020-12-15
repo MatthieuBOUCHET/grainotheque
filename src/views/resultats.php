@@ -25,6 +25,7 @@ require_once './models/traitement_donnees.php';
                         {
                             affichage_tableau($ligne,$key);
                         }
+                        
                         break;
 
                     case 3:

@@ -37,7 +37,7 @@ ob_start();
             <script>
                 var ctx2 = $('#stock_bar');
                 var graphs = stock_graph([ctx1,ctx2],getCookie('stock'));
-            </script>-->
+            </script>
         </div>
     </div>
 </div>

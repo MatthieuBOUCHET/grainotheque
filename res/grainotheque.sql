@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  Dim 13 déc. 2020 à 15:21
--- Version du serveur :  8.0.18
--- Version de PHP :  7.3.12
+-- Généré le : mar. 15 déc. 2020 à 16:14
+-- Version du serveur :  5.7.31
+-- Version de PHP : 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `grainotheque`
+-- Base de données : `grainotheque`
 --
 
 -- --------------------------------------------------------
@@ -31,10 +30,10 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `aromatiques`;
 CREATE TABLE IF NOT EXISTS `aromatiques` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `espece` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `espece` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `stock` smallint(5) DEFAULT NULL,
-  `latin` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `famille` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `latin` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `famille` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `cycle` tinyint(1) DEFAULT NULL,
   `couleur` tinyint(4) DEFAULT NULL,
   `debut_floraison` tinyint(1) DEFAULT NULL,
@@ -42,11 +41,11 @@ CREATE TABLE IF NOT EXISTS `aromatiques` (
   `hauteur` tinyint(4) DEFAULT NULL,
   `debut_semis` tinyint(1) DEFAULT NULL,
   `fin_semis` tinyint(1) DEFAULT NULL,
-  `type_semis` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
-  `technique` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+  `type_semis` text COLLATE utf8_unicode_ci,
+  `technique` text COLLATE utf8_unicode_ci,
   `exposition` tinyint(1) DEFAULT NULL,
   `pollinisateur` tinyint(1) DEFAULT NULL,
-  `infos` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+  `infos` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -66,10 +65,10 @@ INSERT INTO `aromatiques` (`id`, `espece`, `stock`, `latin`, `famille`, `cycle`,
 DROP TABLE IF EXISTS `fleurs_horticoles`;
 CREATE TABLE IF NOT EXISTS `fleurs_horticoles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `espece` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `espece` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `stock` smallint(5) DEFAULT NULL,
-  `latin` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `famille` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `latin` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `famille` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `cycle` tinyint(1) DEFAULT NULL,
   `couleur` tinyint(4) DEFAULT NULL,
   `debut_floraison` tinyint(1) DEFAULT NULL,
@@ -77,13 +76,13 @@ CREATE TABLE IF NOT EXISTS `fleurs_horticoles` (
   `hauteur` tinyint(4) DEFAULT NULL,
   `debut_semis` tinyint(1) DEFAULT NULL,
   `fin_semis` tinyint(1) DEFAULT NULL,
-  `type_semis` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
-  `technique` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+  `type_semis` text COLLATE utf8_unicode_ci,
+  `technique` text COLLATE utf8_unicode_ci,
   `exposition` tinyint(1) DEFAULT NULL,
   `pollinisateur` tinyint(1) DEFAULT NULL,
-  `infos` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+  `infos` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -94,10 +93,10 @@ CREATE TABLE IF NOT EXISTS `fleurs_horticoles` (
 DROP TABLE IF EXISTS `fleurs_sauvages_locales`;
 CREATE TABLE IF NOT EXISTS `fleurs_sauvages_locales` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `espece` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `espece` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `stock` smallint(5) DEFAULT NULL,
-  `latin` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `famille` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `latin` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `famille` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `cycle` tinyint(1) DEFAULT NULL,
   `couleur` tinyint(4) DEFAULT NULL,
   `debut_floraison` tinyint(1) DEFAULT NULL,
@@ -105,22 +104,22 @@ CREATE TABLE IF NOT EXISTS `fleurs_sauvages_locales` (
   `hauteur` tinyint(4) DEFAULT NULL,
   `debut_semis` tinyint(1) DEFAULT NULL,
   `fin_semis` tinyint(1) DEFAULT NULL,
-  `type_semis` text COLLATE utf8_unicode_ci NOT NULL,
+  `type_semis` text COLLATE utf8_unicode_ci,
   `culture` tinyint(1) DEFAULT NULL,
-  `technique` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+  `technique` text COLLATE utf8_unicode_ci,
   `exposition` tinyint(1) DEFAULT NULL,
   `pollinisateur` tinyint(1) DEFAULT NULL,
-  `infos` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+  `infos` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Déchargement des données de la table `fleurs_sauvages_locales`
 --
 
 INSERT INTO `fleurs_sauvages_locales` (`id`, `espece`, `stock`, `latin`, `famille`, `cycle`, `couleur`, `debut_floraison`, `fin_floraison`, `hauteur`, `debut_semis`, `fin_semis`, `type_semis`, `culture`, `technique`, `exposition`, `pollinisateur`, `infos`) VALUES
-(1, 'Bardane (à petites têtes)', 4, 'Arctium minus', 'Astéracées', 2, 6, 7, 9, 127, 6, 9, '', 0, '', 4, 1, ''),
-(2, 'Achillée Millefeuille', 8, 'Achillea millefolium', 'Astéracées', 3, 1, 6, 9, 50, 5, 7, '', 0, 'Privilégier repiquages repousses', 4, 1, ''),
+(1, 'Bardane (à petites têtes)', 3, 'Arctium minus', 'Astéracées', 2, 6, 7, 9, 127, 6, 9, NULL, NULL, NULL, 4, 1, NULL),
+(2, 'Achillée Millefeuille', 5, 'Achillea millefolium', 'Astéracées', 3, 1, 6, 9, 50, 5, 7, NULL, NULL, 'Privilégier repiquages repousses', 4, 1, NULL),
 (3, 'Aigremoine eupatoire', 10, 'Agrimonia eupatoria', 'Rosacées', 3, 2, 6, 9, 50, 8, 9, '', 0, '', 1, 1, ''),
 (4, 'Agripaume cardiaque', 4, 'Leonurus cardiaca', 'Lamiacées', 3, 3, 6, 8, 100, 0, 0, '', 0, '', 4, 1, ''),
 (5, 'Alliaire officinale', 1, 'Alliaria officinalis', 'Brassicacées', 2, 1, 4, 6, 60, 6, 9, '', 0, '', 2, 1, ''),
@@ -181,11 +180,11 @@ INSERT INTO `fleurs_sauvages_locales` (`id`, `espece`, `stock`, `latin`, `famill
 DROP TABLE IF EXISTS `legumes`;
 CREATE TABLE IF NOT EXISTS `legumes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `espece` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `espece` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `stock` smallint(5) DEFAULT NULL,
-  `variete` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `latin` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `famille` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `variete` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `latin` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `famille` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `cycle` tinyint(1) DEFAULT NULL,
   `couleur` tinyint(4) DEFAULT NULL,
   `debut_floraison` tinyint(1) DEFAULT NULL,
@@ -193,13 +192,13 @@ CREATE TABLE IF NOT EXISTS `legumes` (
   `hauteur` tinyint(4) DEFAULT NULL,
   `debut_semis` tinyint(1) DEFAULT NULL,
   `fin_semis` tinyint(1) DEFAULT NULL,
-  `type_semis` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+  `type_semis` text COLLATE utf8_unicode_ci,
   `ecartement_entre_lignes` float DEFAULT NULL,
   `ecartement_sur_lignes` float DEFAULT NULL,
-  `technique` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+  `technique` text COLLATE utf8_unicode_ci,
   `exposition` tinyint(1) DEFAULT NULL,
   `pollinisateur` tinyint(1) DEFAULT NULL,
-  `infos` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+  `infos` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 

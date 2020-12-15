@@ -1,6 +1,7 @@
 <?php
 /**
- * Condition mois
+ * Transforme le stockage de base de données en texte clair
+ * Ex : `mois_cond(1)`=>'Janvier'
  *
  * @param [Element] $champ
  * @return $champ ligne modifiée
@@ -50,6 +51,12 @@ function mois_cond($champ)
     return $champ;
 }
 
+/**
+ * Fonction convertissant un booléen en clair
+ *
+ * @param string $champ, nom du champ
+ * @return string, texte en clair
+ */
 function checkbox($champ)
 {
 if($champ == 1){
@@ -63,15 +70,15 @@ else{
 /**
  * Décode les données
  *
- * @param [DICT] $resultats
- * @return [DICT] $ensemble
+ * @param array $resultats, résultats de la base de données
+ * @return array $ensemble, résultats décodés
  */
 function decode_donnees($ensemble)
 {
     
     if(!count($ensemble) == 0){
 
-        
+        //Cycle
         switch($ensemble['cycle'])
         {
             case 1:
@@ -85,7 +92,7 @@ function decode_donnees($ensemble)
                 break;
         }
 
-        
+        //Couleur
         switch($ensemble['couleur'])
         {
             case 1:
@@ -114,11 +121,13 @@ function decode_donnees($ensemble)
             
         }
 
+        //Mois
         $ensemble['debut_floraison'] = mois_cond($ensemble['debut_floraison']);
         $ensemble['fin_floraison'] = mois_cond($ensemble['fin_floraison']);
         $ensemble['debut_semis'] = mois_cond($ensemble['debut_semis']);
         $ensemble['fin_semis'] = mois_cond($ensemble['fin_semis']);
 
+        //Exposition
         switch($ensemble['exposition'])
         {
             case 1:
@@ -135,6 +144,7 @@ function decode_donnees($ensemble)
                 break;
         }
 
+        //BOOLEEN
         $ensemble['pollinisateur'] = checkbox($ensemble['pollinisateur']);
 
         if(isset($ensemble['culture']))
