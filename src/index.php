@@ -2,11 +2,11 @@
 //Désolé TWFyaW5lIEJhdGFpbGxl, vraiment désolé:)
 
 session_start();
+include('./include/phpqrcode.php');
 require_once('./models/general.php');
 require_once('./models/database.php');
 require_once('./models/formulaire.php');
 require_once('./models/traitement_donnees.php');
-
 
 
 if(!empty($_GET['action']))
@@ -55,6 +55,26 @@ if(!empty($_GET['action']))
 
             require_once './views/resultats.php';
             break;
+
+        //Résultats détaillés
+        case 'details':
+            $categorie = filter_input(INPUT_GET,'categorie');
+            $id = filter_input(INPUT_GET,'id');
+
+            $resultats = recherche(['categorie'=>$categorie,'id'=>$id]);
+
+            if(count($resultats) == 0){
+                require_once './views/resultats.php';
+                break;
+            }
+            else
+            {
+                $resultats = $resultats[$categorie][0];
+
+                require_once './views/resultats_detailles.php';
+                break;
+            }
+            
         
         //Traitement du formulaire d'insertion
         case 'insertion':

@@ -43,151 +43,50 @@ function red_erreur()
 function affichage_tableau($ligne,$categorie){
     $ligne = decode_donnees($ligne);
 
-    switch($categorie){
-        case 1:
-            $t1 = 
-            "<tr>
-            <th><a class='btn btn-dark' href='index.php?action=modification&categorie=".$categorie."&id=".$ligne['id']."'><i class='far fa-edit mr-1'></i>Modifier</a></th>
-            <th>".$ligne['espece']."</th>
-            <td><i>".$ligne['latin']."</i></td>
-            <td>".$ligne['stock']."</td>
-            <td>".$ligne['famille']."</td>      
-            <td>".$ligne['cycle']."</td>
-            <td>".$ligne['couleur']."</td>
-            <td>".$ligne['debut_floraison']." - ".$ligne['fin_floraison']."</td>
-            <td>".$ligne['hauteur']."</td>
-            <td>".$ligne['debut_semis']." - ".$ligne['fin_semis']."</td>
-            <td>".$ligne['type_semis']."
-            <td>".$ligne['culture']."</td>
-            <td>".$ligne['technique']."</td>
-            <td>".$ligne['exposition']."</td>
-            <td>".$ligne['pollinisateur']."</td>
-            <td>".$ligne['infos']."</td>
-            </tr>";
+    $t1 = 
+    "<tr>
+    <th><a class='btn btn-dark' href='index.php?action=modification&categorie=".$categorie."&id=".$ligne['id']."'><i class='far fa-edit mr-1'></i>Modifier</a>
+    <a class='btn btn-info' href='index.php?action=details&categorie=".$categorie."&id=".$ligne['id']."'><i class='far fa-question-circle mr-1'></i>Infos</a>
+    <a class='btn btn-light' href='./models/qr_code_gen.php?categorie=".$categorie."&id=".$ligne['id']."' target=_blank'><i class='fas fa-qrcode mr-1'></i>Infos</a>
+    </th>
 
-            echo($t1);
-            break;
+    <th>".$ligne['espece']."</th>
+    <td>".$ligne['stock']."</td>
+    <td>".$ligne['famille']."</td>      
+    <td>".$ligne['cycle']."</td>
+    <td>".$ligne['couleur']."</td>
+    </tr>";
 
-        case 3:
-            $t3 = 
-            "<tr>
-            <th><a class='btn btn-dark' href='index.php?action=modification&categorie=".$categorie."&id=".$ligne['id']."'><i class='far fa-edit mr-1'></i>Modifier</a></th>
-            <th>".$ligne['espece']."</th>
-            <td>".$ligne['variete']."</th>
-            <td><i>".$ligne['latin']."</i></td>
-            <td>".$ligne['stock']."</td>
-            <td>".$ligne['famille']."</td>      
-            <td>".$ligne['cycle']."</td>
-            <td>".$ligne['couleur']."</td>
-            <td>".$ligne['debut_floraison']." - ".$ligne['fin_floraison']."</td>
-            <td>".$ligne['hauteur']."</td>
-            <td>".$ligne['debut_semis']." - ".$ligne['fin_semis']."</td>
-            <td>".$ligne['type_semis']."</td>
-            <td>".$ligne['ecartement_entre_lignes']."</td>
-            <td>".$ligne['ecartement_sur_lignes']."</td>
-            <td>".$ligne['technique']."</td>
-            <td>".$ligne['exposition']."</td>
-            <td>".$ligne['pollinisateur']."</td>
-            <td>".$ligne['infos']."</td>
-            </tr>";
-
-            echo($t3);
-            break;
-        
-        default:
-            
-
-            $t_o = "<tr>
-            <th><a class='btn btn-dark' href='index.php?action=modification&categorie=".$categorie."&id=".$ligne['id']."'><i class='far fa-edit mr-1'></i>Modifier</a></th>
-            <th>".$ligne['espece']."</th>
-            <td><i>".$ligne['latin']."</i></td>
-            <td>".$ligne['stock']."</td>
-            <td>".$ligne['famille']."</td>      
-            <td>".$ligne['cycle']."</td>
-            <td>".$ligne['couleur']."</td>
-            <td>".$ligne['debut_floraison']." - ".$ligne['fin_floraison']."</td>
-            <td>".$ligne['hauteur']."</td>
-            <td>".$ligne['debut_semis']." - ".$ligne['fin_semis']."</td>
-            <td>".$ligne['type_semis']."</td>
-            <td>".$ligne['technique']."</td>
-            <td>".$ligne['exposition']."</td>
-            <td>".$ligne['pollinisateur']."</td>
-            <td>".$ligne['infos']."</td>
-            </tr>";
-
-            echo($t_o);
-    }
+    echo($t1);
 }
+
+
 //SNIPPETS HTML
-$t_1 = "
-<div class='cont_table'>
-<table class='mt-1 mw-100 table w-100'>
-<thead>
-<tr>
-<th></th>
-<th>Espèce</th>
-<th>Nom latin</th>
-<th>Stock (unités)</th>
-<th>Famille</th>
-<th>Cycle</th>
-<th>Couleur</th>
-<th>Floraison</th>
-<th>Hauteur (cm)</th>
-<th>Semis</th>
-<th>Type semis</th>
-<th>Culture godets</th>
-<th>Technique</th>
-<th>Exposition</th>
-<th>Pollinisateur</th>
-<th>Infos</th>
-</tr>
-</thead>
-<tbody>";
+$fleurs_sauvages_locales = ['espece'=>'Espèce','latin'=>'Nom latin','stock' => 'Stock', 'famille'=>'Famille', 'cycle'=>'Cycle','couleur'=>'Couleur',
+'debut_floraison'=>'Début floraison','fin_floraison'=>'Fin floraison','hauteur'=>'Hauteur',
+'debut_semis'=>'Début semis','fin_semis'=>'Fin semis','type_semis'=>'Type semis','culture'=>'Culture',
+'technique'=>'Technique','exposition'=>'Exposition',
+'pollinisateur'=>'Pollinisateur','infos'=>'Infos'];
 
-$t_legumes = "
-<table class='mt-1 mw-100 table w-100'>
-<thead>
-<tr>
-<th></th>
-<th>Espèce</th>
-<th>Variété</th>
-<th>Nom latin</th>
-<th>Stock (unités)</th>
-<th>Famille</th>
-<th>Cycle</th>
-<th>Couleur</th>
-<th>Récolte</th>
-<th>Hauteur (cm)</th>
-<th>Semis</th>
-<th>Type semis</th>
-<th>Ecartement entre lignes (cm)</th>
-<th>Ecartement sur lignes (cm)</th>
-<th>Technique</th>
-<th>Exposition</th>
-<th>Pollinisateur</th>
-<th>Infos</th>
-</tr>
-</thead>
-<tbody>";
+$legumes = $fleurs_sauvages_locales;
+unset($legumes['culture']);
+$legumes['ecartement_entre_lignes'] = 'Ecartement entre lignes (cm)';
+$legumes['ecartement_sur_lignes'] = 'Ecartement sur lignes (cm)';
 
-$t_other = "<table class='mt-1 mw-100 table w-100'> <!--Changements sur récolte et ajout des champs entre lignes-->
+$autres = $fleurs_sauvages_locales;
+unset($autres['culture']);
+
+$table = "
+<div class='cont_table table-responsive'>
+<table class='mt-1 mw-100 table w-100 table-striped'>
 <thead>
 <tr>
 <th></th>
 <th>Espèce</th>
-<th>Nom latin</th>
 <th>Stock (unités)</th>
 <th>Famille</th>
 <th>Cycle</th>
 <th>Couleur</th>
-<th>Floraison</th>
-<th>Hauteur (cm)</th>
-<th>Semis</th>
-<th>Type semis</th>
-<th>Technique</th>
-<th>Exposition</th>
-<th>Pollinisateur</th>
-<th>Infos</th>
 </tr>
 </thead>
 <tbody>";

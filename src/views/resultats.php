@@ -16,38 +16,17 @@ require_once './models/traitement_donnees.php';
             
             foreach($resultats as $key=>$val)
             {
-                switch($key)
+                echo($table);
+
+                foreach($resultats[$key] as $ligne)
                 {
-                    case 1:
-                        echo($t_1);
-
-                        foreach($resultats[$key] as $ligne)
-                        {
-                            affichage_tableau($ligne,$key);
-                        }
-                        
-                        break;
-
-                    case 3:
-                        echo($t_legumes);
-                        foreach($resultats[$key] as $ligne)
-                        {
-                            affichage_tableau($ligne,$key);
-                        }
-                        break;
-                    
-                    default:
-                        echo($t_other);
-                        foreach($resultats[$key] as $ligne)
-                        {
-                            affichage_tableau($ligne,$key);
-                        }
-                        break;
-
-                    }
-                    echo("<h3 class='mt-5'>".$titres[$key].'</h3>');
+                    affichage_tableau($ligne,$key);
                 }
+                
+                echo("<h3 class='mt-5'>".$titres[$key].'</h3>');
             }
+                   
+        }
 
         else
         {

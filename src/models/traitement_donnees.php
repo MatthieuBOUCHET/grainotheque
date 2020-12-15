@@ -3,8 +3,8 @@
  * Transforme le stockage de base de données en texte clair
  * Ex : `mois_cond(1)`=>'Janvier'
  *
- * @param [Element] $champ
- * @return $champ ligne modifiée
+ * @param string $champ, nom du champ
+ * @return string $champ, ligne modifiée
  */
 function mois_cond($champ)
 {
@@ -70,7 +70,7 @@ else{
 /**
  * Décode les données
  *
- * @param array $resultats, résultats de la base de données
+ * @param array $ensemble, résultats de la base de données
  * @return array $ensemble, résultats décodés
  */
 function decode_donnees($ensemble)
