@@ -23,7 +23,7 @@ tbody > tr:hover {
     background-color: #e0dfe4;
 }
 
-.btn {
+.btn:not(.btn-light) {
     color: white !important;
 }
 

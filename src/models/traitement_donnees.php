@@ -161,14 +161,11 @@ function decode_donnees($ensemble)
                 unset($ensemble[$key]);
             }
             
-            if(($value === '0' || $value === '') & $key!='stock')
+            if((($value === '0') & $key!='stock'))
             {
-                $ensemble[$key] = 'Inconnu';
+                $ensemble[$key] = '';
             }
-        }
-            
-            
-        
+        } 
     }
     //print_r($ensemble);
     return $ensemble;

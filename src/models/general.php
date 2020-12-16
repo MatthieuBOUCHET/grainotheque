@@ -47,7 +47,7 @@ function affichage_tableau($ligne,$categorie){
     "<tr>
     <th><a class='btn btn-dark' href='index.php?action=modification&categorie=".$categorie."&id=".$ligne['id']."'><i class='far fa-edit mr-1'></i>Modifier</a>
     <a class='btn btn-info' href='index.php?action=details&categorie=".$categorie."&id=".$ligne['id']."'><i class='far fa-question-circle mr-1'></i>Infos</a>
-    <a class='btn btn-light' href='./models/qr_code_gen.php?categorie=".$categorie."&id=".$ligne['id']."' target=_blank'><i class='fas fa-qrcode mr-1'></i>Infos</a>
+    <a class='btn btn-light' href='./models/qr_code_gen.php?categorie=".$categorie."&id=".$ligne['id']."' target=_blank'><i class='fas fa-qrcode mr-1'></i>QR Code</a>
     </th>
 
     <th>".$ligne['espece']."</th>
@@ -62,19 +62,21 @@ function affichage_tableau($ligne,$categorie){
 
 
 //SNIPPETS HTML
-$fleurs_sauvages_locales = ['espece'=>'Espèce','latin'=>'Nom latin','stock' => 'Stock', 'famille'=>'Famille', 'cycle'=>'Cycle','couleur'=>'Couleur',
-'debut_floraison'=>'Début floraison','fin_floraison'=>'Fin floraison','hauteur'=>'Hauteur',
+$GLOBALS['fleurs_sauvages_locales'] = ['espece'=>'Espèce','latin'=>'Nom latin','stock' => 'Stock', 'famille'=>'Famille', 'cycle'=>'Cycle','couleur'=>'Couleur',
+'debut_floraison'=>'Début floraison','fin_floraison'=>'Fin floraison','hauteur'=>'Hauteur (cm)',
 'debut_semis'=>'Début semis','fin_semis'=>'Fin semis','type_semis'=>'Type semis','culture'=>'Culture',
 'technique'=>'Technique','exposition'=>'Exposition',
 'pollinisateur'=>'Pollinisateur','infos'=>'Infos'];
 
-$legumes = $fleurs_sauvages_locales;
-unset($legumes['culture']);
-$legumes['ecartement_entre_lignes'] = 'Ecartement entre lignes (cm)';
-$legumes['ecartement_sur_lignes'] = 'Ecartement sur lignes (cm)';
+$GLOBALS['legumes'] = $GLOBALS['fleurs_sauvages_locales'];
+unset($GLOBALS['legumes']['culture']);
+$GLOBALS['legumes']['ecartement_entre_lignes'] = 'Ecartement entre lignes (cm)';
+$GLOBALS['legumes']['ecartement_sur_lignes'] = 'Ecartement sur lignes (cm)';
 
-$autres = $fleurs_sauvages_locales;
-unset($autres['culture']);
+$GLOBALS['autres'] = $fleurs_sauvages_locales;
+unset($GLOBALS['autres']['culture']);
+
+$GLOBALS['total'] = array_merge($GLOBALS['legumes'],$GLOBALS['fleurs_sauvages_locales']);
 
 $table = "
 <div class='cont_table table-responsive'>
