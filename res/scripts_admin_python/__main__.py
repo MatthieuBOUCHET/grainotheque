@@ -2,23 +2,22 @@
 """
 
 ##Modules##
-import csv
+import csv, time
 
 #Champs des fleurs sauvages locales - Entetes
 """id,espece,stock,latin,famille,cycle,couleur,debut_floraison,
 fin_floraison,hauteur,debut_semis,fin_semis,type_semis,culture,technique,
 exposition,pollinisateur,infos"""
 
-donnees = []
-
-def traitement(chemin_csv):
+def traitement_fleurs_sauvages_locales(chemin_csv):
     """Fonction traitant le CSV (sep = ;) entrant et l'implémant sous forme de
     liste Python. (Liste de listes, tableau)
-
     Args:
     -----
         chemin_csv (STRING): Chemin du fichier CSV
     """
+    donnees = []
+    
     with open(chemin_csv, mode='r') as f:
         lecture = csv.reader(f, delimiter=';')
         ligne = 0
@@ -64,15 +63,70 @@ def traitement(chemin_csv):
                 elif row[13] == 'non' or row[13] == 'Non':
                     row[13] = 0
 
-                donnees.append(['',row[0],row[1],row[2],row[3],row[4],row[5],row6[0],
-                row6[1],row[7],row8[0],row8[1],'',row[9],row[10],row[11],row[13],
-                row[14]])
+                donnees.append([row[0],row[1],row[2],row[3],row[4],row[5],
+                row6[0],row6[1],row[7],row8[0],row8[1],'',row[9],row[10],
+                row[11],row[13],row[14]])
+                ligne += 1
+    return donnees
+
+def traitement_fleurs_horticoles_et_exotiques(chemin_csv):
+    """Fonction traitant le CSV (sep = ;) entrant et l'implémant sous forme de
+    liste Python. (Liste de listes, tableau)
+    Args:
+    -----
+        chemin_csv (STRING): Chemin du fichier CSV
+    """
+    donnees = []
+    
+    with open(chemin_csv, mode='r') as f:
+        lecture = csv.reader(f, delimiter=';')
+        ligne = 0
+        for row in lecture:
+            if ligne == 0 or ligne == 1:
                 ligne += 1
 
-def ecriture(chemin_sortie):
+            else:
+                if row[4] == 'Annuelle':
+                    row[4] = 1
+                elif row[4] == 'Bisannuelle':
+                    row[4] = 2
+                elif row[4] == 'Vivace':
+                    row[4] = 3
+
+                row6 = row[6].split("-")
+                if row[6] == '':
+                    row6.append('')
+                    row6.append('')
+
+                row8 = row[8].split("/")
+                row8 = row8[0].split("-")
+                if row[8] == '':
+                    row8.append('')
+                    row8.append('')
+
+                if row[11] == 'S':
+                    row[11] = 1
+                elif row[11] == 'Mo':
+                    row[11] = 2
+                elif row[11] == 'O':
+                    row[11] = 3
+                elif row[11] == 'S+Mo':
+                    row[11] = 4
+
+                if row[13] == 'oui' or row[13] == 'Oui':
+                    row[13] = 1
+                elif row[13] == 'non' or row[13] == 'Non':
+                    row[13] = 0
+
+                donnees.append(['',row[0],row[1],row[2],row[3],row[4],row[5],
+                row6[0],row6[1],row[7],row8[0],row8[1],'',row[9],row[10],
+                row[11],row[13],row[14]])
+                ligne += 1
+    return donnees
+
+def ecriture(chemin_sortie, donnees):
     """Fonction écrivant un nouveau fichier CSV prêt à être lu
     par PHP myAdmin. Le CSV a pour délimiteur des virgules
-
     Args:
         chemin_sortie (STRING): Chemin du fichier de sortie CSV
     """
@@ -83,6 +137,11 @@ def ecriture(chemin_sortie):
             ecrire.writerow(donnees[ligne])
             ligne += 1
 
+"""
 if __name__ == '__main__':
-    traitement('Fleurs_Sauvages_Locales.csv')
-    ecriture('Fleurs_Sauvages_Locales_Convertis.csv')
+    ecriture('Fleurs_Sauvages_Locales_Convertis.csv',
+    traitement_fleurs_sauvages_locales('Fleurs_Sauvages_Locales.csv'))
+"""
+
+ecriture('Fleurs_Horticoles_Exotiques_Convertis.csv',
+traitement_fleurs_horticoles_et_exotiques('Fleurs_Horticoles_Exotiques.csv'))

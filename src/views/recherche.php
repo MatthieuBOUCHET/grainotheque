@@ -98,11 +98,6 @@ $html_1 = "<div class='container mb-4 mt-4 pb-1 pl-auto pt-1'>
     </div>
 
     <div class='form-group'> 
-        <label for='stock'>Stock minimum (unités)</label>                     
-        <input type='number' class='form-control user-select-all numeral stock' name='stock' min='0' max='100'> 
-    </div>
-
-    <div class='form-group'> 
         <label for='hauteur'>Hauteur minimum (cm)</label>                     
         <input type='number' class='form-control user-select-all numeral hauteur' name='hauteur' min='0' max='10000'> 
     </div>
@@ -123,6 +118,9 @@ $html_1 = "<div class='container mb-4 mt-4 pb-1 pl-auto pt-1'>
         </label>                     
         <label class='btn btn-light'> 
             <input type='checkbox' name='pollinisateur'> Utile pollinisateur                
+        </label> 
+        <label class='btn btn-light'> 
+            <input type='checkbox' name='stock'> En stock ?                
         </label>                                         
     </div>
 

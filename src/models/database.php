@@ -80,7 +80,15 @@ class BDD extends PDO
 
                 if(in_array($key,$key_superieures))
                 {
-                    $sql_3 = $sql_3.' >= :';
+                    if($key == 'stock')
+                    {
+                        $sql_3 = $sql_3.' > :';
+                    }
+                    else
+                    {
+                        $sql_3 = $sql_3.' >= :';
+                    }
+                    
                 }
 
                 else
@@ -122,6 +130,7 @@ class BDD extends PDO
         $this->construction_sql($params);
 
         //print_r($this->params);
+        //print_r($this->sql);
         $req = $this->prepare($this->sql);
         $req->execute($this->params);
 

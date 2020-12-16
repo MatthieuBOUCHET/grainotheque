@@ -50,7 +50,15 @@ class Formsdatas
         foreach ($this->donnees as $key => $value) {
             //Checkbox
             if($value == 'on'){
-                $this->donnees[$key] = 1;
+                if($key == 'stock')
+                {
+                    $this->donnees[$key] = 0;
+                }
+                else
+                {
+                    $this->donnees[$key] = 1;
+                }
+                
             }
 
             else if($value == 'off'){
