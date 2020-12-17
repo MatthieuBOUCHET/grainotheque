@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 15 déc. 2020 à 16:14
+-- Généré le : mer. 16 déc. 2020 à 17:42
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `aromatiques` (
   `pollinisateur` tinyint(1) DEFAULT NULL,
   `infos` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Déchargement des données de la table `aromatiques`
@@ -82,7 +82,14 @@ CREATE TABLE IF NOT EXISTS `fleurs_horticoles` (
   `pollinisateur` tinyint(1) DEFAULT NULL,
   `infos` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Déchargement des données de la table `fleurs_horticoles`
+--
+
+INSERT INTO `fleurs_horticoles` (`id`, `espece`, `stock`, `latin`, `famille`, `cycle`, `couleur`, `debut_floraison`, `fin_floraison`, `hauteur`, `debut_semis`, `fin_semis`, `type_semis`, `technique`, `exposition`, `pollinisateur`, `infos`) VALUES
+(5, 'Ancolie', 3, 'Aquilegia vulgaris', 'Renonculacées', 3, 5, 5, 8, NULL, 3, 4, NULL, NULL, 4, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -118,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `fleurs_sauvages_locales` (
 --
 
 INSERT INTO `fleurs_sauvages_locales` (`id`, `espece`, `stock`, `latin`, `famille`, `cycle`, `couleur`, `debut_floraison`, `fin_floraison`, `hauteur`, `debut_semis`, `fin_semis`, `type_semis`, `culture`, `technique`, `exposition`, `pollinisateur`, `infos`) VALUES
-(1, 'Bardane (à petites têtes)', 3, 'Arctium minus', 'Astéracées', 2, 6, 7, 9, 127, 6, 9, NULL, NULL, NULL, 4, 1, NULL),
+(1, 'Bardane', 3, 'Arctium minus', 'Astéracées', 2, 6, 7, 9, 125, 6, 9, NULL, NULL, NULL, 4, 1, 'A petites têtes'),
 (2, 'Achillée Millefeuille', 5, 'Achillea millefolium', 'Astéracées', 3, 1, 6, 9, 50, 5, 7, NULL, NULL, 'Privilégier repiquages repousses', 4, 1, NULL),
 (3, 'Aigremoine eupatoire', 10, 'Agrimonia eupatoria', 'Rosacées', 3, 2, 6, 9, 50, 8, 9, '', 0, '', 1, 1, ''),
 (4, 'Agripaume cardiaque', 4, 'Leonurus cardiaca', 'Lamiacées', 3, 3, 6, 8, 100, 0, 0, '', 0, '', 4, 1, ''),
@@ -151,7 +158,7 @@ INSERT INTO `fleurs_sauvages_locales` (`id`, `espece`, `stock`, `latin`, `famill
 (31, 'Mélilot blanc', 13, 'Melilotus alba', 'Fabacées', 2, 1, 6, 8, 70, 5, 9, '', 0, '', 1, 1, ''),
 (32, 'Millepertuis commun', 5, 'Hypericum perforatum', 'Hypericacées', 3, 2, 5, 8, 60, 3, 5, '', 0, '', 4, 1, ''),
 (33, 'Monnaie du Pape, Lunaire annuelle', 13, 'Lunaria annua', 'Brassicacées', 2, 3, 4, 6, 60, 6, 9, '', 0, '', 2, 1, ''),
-(34, 'Moutarde (var ?)', 1, 'Sinapis', 'Brassicacées', 1, 2, 5, 10, 80, 3, 5, '', 0, '', 1, 1, ''),
+(34, 'Moutarde', 1, 'Sinapis', 'Brassicacées', 1, 2, 5, 10, 80, 3, 5, NULL, NULL, NULL, 1, 1, 'Variété inconnue'),
 (35, 'Nepeta', 13, '', '', 0, 0, 0, 0, 0, 0, 0, '', 0, '', 0, 1, ''),
 (36, 'Nielle des blés', 11, 'Agrostemma githago', 'Caryophylacées', 1, 3, 5, 8, 80, 3, 5, '', 0, '', 1, 1, 'Messicole'),
 (37, 'Onagre', 10, '', '', 0, 0, 0, 0, 0, 0, 0, '', 0, '', 0, 1, ''),
@@ -160,13 +167,13 @@ INSERT INTO `fleurs_sauvages_locales` (`id`, `espece`, `stock`, `latin`, `famill
 (40, 'Plantain lancéolé', 7, '', '', 0, 0, 0, 0, 0, 0, 0, '', 0, '', 0, 1, ''),
 (41, 'Pois vivace', 13, 'Lathyrus latifolius', 'Fabacées', 3, 3, 5, 8, 127, 4, 5, '', 0, '', 1, 1, 'Grimpante (non comestible)'),
 (42, 'Sainfoin à feuilles de vesce', 11, 'Onobrychis viciifolia', 'Fabacées', 3, 7, 5, 9, 60, 3, 5, '', 0, '', 1, 1, 'Vivace courte (3 ans)'),
-(43, 'Saponaire officinale', 7, 'Saponaria officinalis', 'Caryophyllacées', 3, 7, 6, 9, 60, 3, 5, '', 0, 'Bouture tiges début printemps', 4, 1, ''),
+(43, 'Saponaire officinale', 7, 'Saponaria officinalis', 'Caryophyllacées', 3, 7, 6, 9, 60, 3, 5, NULL, 1, 'Bouture tiges début printemps', 4, 1, NULL),
 (44, 'Sauge sclarée', 0, 'Salvia sclarea', 'Lamiacées', 2, 7, 6, 9, 80, 4, 9, '', 0, 'Transplanter nombreux resemis spontanés', 1, 1, 'Peut se comporter comme une vivace'),
 (45, 'Sauge des près', 7, 'Salvia pratensis', 'Lamiacées', 3, 7, 5, 8, 60, 3, 5, '', 1, '', 1, 1, ''),
 (46, 'Scabieuse colombaire', 1, 'Scabiosa columbaria', 'Dipsacacées', 3, 7, 6, 9, 70, 3, 5, '', 1, '', 1, 1, ''),
 (47, 'Silène enflée', 3, 'Silene vulgaris', 'Caryophyllacées', 3, 1, 4, 8, 50, 3, 5, '', 0, '', 4, 1, ''),
 (48, 'Tanaisie commune', 12, 'Tanacetum vulgare', 'Asteracées', 3, 2, 6, 10, 80, 3, 5, '', 0, 'Divisions printemps ou automne', 1, 1, ''),
-(49, 'Tournesol', 10, 'Helianthus annus', 'Asteracées', 1, 2, 7, 9, 100, 4, 6, '', 0, '', 1, 1, ''),
+(49, 'Tournesol', 10, 'Helianthus annus', 'Asteracées', 1, 2, 7, 9, 100, 4, 6, NULL, NULL, NULL, 1, 1, NULL),
 (50, 'Vesce cultivée', 2, 'Vicia sativa', 'Fabacées', 1, 7, 5, 7, 30, 3, 5, '', 0, '', 4, 1, 'Semi-grimpante'),
 (51, 'Vesce en épis', 5, 'Vicia cracca', 'Fabacées', 3, 7, 6, 8, 30, 3, 5, '', 0, '', 4, 1, 'Semi-grimpante'),
 (52, 'Vipérine', 0, 'Echium vulgare', 'Boraginacées', 2, 7, 6, 8, 80, 6, 9, '', 0, '', 1, 1, '');
